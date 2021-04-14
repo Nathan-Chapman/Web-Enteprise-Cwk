@@ -1,0 +1,7 @@
+nathanchapman\cwk3\pers\AbstractFacade.class
+nathanchapman\cwk3\resources\JavaEE8Resource.class
+nathanchapman\cwk3\ent\Person.class
+nathanchapman\cwk3\bus\PersonService.class
+nathanchapman\cwk3\pers\PersonFacade.class
+nathanchapman\cwk3\JAXRSConfiguration.class
+nathanchapman\cwk3\ctrl\PersonCtrl.class
