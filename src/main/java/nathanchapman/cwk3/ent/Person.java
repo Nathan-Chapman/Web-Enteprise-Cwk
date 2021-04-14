@@ -6,10 +6,13 @@
 package nathanchapman.cwk3.ent;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -26,6 +29,16 @@ public class Person implements Serializable {
     private String lastName;
     private String email;
     private String password;
+    @OneToMany(targetEntity = Proposal.class, mappedBy = "person")
+    private List<Proposal> proposals = new ArrayList<>();
+
+    public List<Proposal> getProposals() {
+        return proposals;
+    }
+
+    public void setProposals(List<Proposal> proposals) {
+        this.proposals = proposals;
+    }
 
     public String getEmail() {
         return email;
@@ -116,7 +129,7 @@ public class Person implements Serializable {
 
     @Override
     public String toString() {
-        return "nathanchapman.testt.ent.Person[ id=" + id + " ]";
+        return "nathanchapman.cwk3.ent.Person[ id=" + id + " ]";
     }
     
 }
