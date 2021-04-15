@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
@@ -31,7 +32,17 @@ public class Person implements Serializable {
     private String password;
     @OneToMany(targetEntity = Proposal.class, mappedBy = "person")
     private List<Proposal> proposals = new ArrayList<>();
+    @ManyToOne(targetEntity = Vote.class)
+    private List<Vote> votes = new ArrayList<>();
 
+    public List<Vote> getVotes() {
+        return votes;
+    }
+
+    public void setVotes(List<Vote> votes) {
+        this.votes = votes;
+    }
+    
     public List<Proposal> getProposals() {
         return proposals;
     }

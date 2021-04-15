@@ -6,8 +6,6 @@
 package nathanchapman.cwk3.ent;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,29 +18,34 @@ import javax.persistence.OneToMany;
  * @author natha
  */
 @Entity
-public class Proposal implements Serializable {
+public class Vote implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String title;
-    private String ruleInQ;
-    private String change;
-    private String reason;
+    private Integer vote;
+    
+    @ManyToOne(targetEntity = Proposal.class)
+    private Proposal proposal;
     
     @ManyToOne(targetEntity = Person.class)
     private Person person;
-    
-    @OneToMany(targetEntity = Vote.class)
-    private List<Vote> votes = new ArrayList<>();
 
-    public List<Vote> getVotes() {
-        return votes;
+    public Integer getVote() {
+        return vote;
     }
 
-    public void setVotes(List<Vote> votes) {
-        this.votes = votes;
+    public void setVote(Integer vote) {
+        this.vote = vote;
+    }
+
+    public Proposal getProposal() {
+        return proposal;
+    }
+
+    public void setProposal(Proposal proposal) {
+        this.proposal = proposal;
     }
 
     public Person getPerson() {
@@ -51,38 +54,6 @@ public class Proposal implements Serializable {
 
     public void setPerson(Person person) {
         this.person = person;
-    }
-    
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getRuleInQ() {
-        return ruleInQ;
-    }
-
-    public void setRuleInQ(String ruleInQ) {
-        this.ruleInQ = ruleInQ;
-    }
-
-    public String getChange() {
-        return change;
-    }
-
-    public void setChange(String change) {
-        this.change = change;
-    }
-
-    public String getReason() {
-        return reason;
-    }
-
-    public void setReason(String reason) {
-        this.reason = reason;
     }
 
     public Long getId() {
@@ -103,10 +74,10 @@ public class Proposal implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Proposal)) {
+        if (!(object instanceof Vote)) {
             return false;
         }
-        Proposal other = (Proposal) object;
+        Vote other = (Vote) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -115,7 +86,7 @@ public class Proposal implements Serializable {
 
     @Override
     public String toString() {
-        return "nathanchapman.cwk3.ent.Proposal[ id=" + id + " ]";
+        return "nathanchapman.cwk3.ent.Vote[ id=" + id + " ]";
     }
     
 }

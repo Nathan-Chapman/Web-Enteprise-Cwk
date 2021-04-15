@@ -8,14 +8,15 @@ package nathanchapman.cwk3.pers;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import nathanchapman.cwk3.ent.Proposal;
+import nathanchapman.cwk3.ent.Vote;
+
 
 /**
  *
  * @author natha
  */
 @Stateless
-public class ProposalFacade extends AbstractFacade<Proposal> {
+public class VoteFacade extends AbstractFacade<Vote> {
 
     @PersistenceContext(unitName = "RelationsPU")
     private EntityManager em;
@@ -23,9 +24,9 @@ public class ProposalFacade extends AbstractFacade<Proposal> {
     @Override
     protected EntityManager getEntityManager() {
         return em;
-    }
-
-    public ProposalFacade() {
-        super(Proposal.class);
+    }   
+            
+    public VoteFacade() {
+        super(Vote.class);
     }
 }
