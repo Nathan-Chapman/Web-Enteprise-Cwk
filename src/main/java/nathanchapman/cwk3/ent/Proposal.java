@@ -10,7 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 /**
  *
@@ -27,17 +26,7 @@ public class Proposal implements Serializable {
     private String ruleInQ;
     private String change;
     private String reason;
-    @ManyToOne(targetEntity =Person.class)
-    private Person person;
 
-    public Person getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
-    }
-    
     public String getTitle() {
         return title;
     }

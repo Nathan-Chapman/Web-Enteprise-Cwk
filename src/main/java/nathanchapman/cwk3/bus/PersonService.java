@@ -9,7 +9,6 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import nathanchapman.cwk3.ent.Person;
 import nathanchapman.cwk3.pers.PersonFacade;
-import nathanchapman.cwk3.pers.ProposalFacade;
 
 /**
  *
@@ -20,8 +19,6 @@ public class PersonService {
 
     @EJB
     private PersonFacade pf;
-    @EJB
-    private ProposalFacade propf;
 
     public Person createNewPerson(Person p) {
         p.setAdminStatus(false);
