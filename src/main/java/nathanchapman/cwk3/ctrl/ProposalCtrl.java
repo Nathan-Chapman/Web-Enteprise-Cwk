@@ -20,7 +20,15 @@ import nathanchapman.cwk3.ent.Proposal;
 public class ProposalCtrl {
     
     private Proposal prop = new Proposal();
-    
+    private long id;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
     public Proposal getProp() {
         return prop;
     }
@@ -39,7 +47,7 @@ public class ProposalCtrl {
     @EJB
     private ProposalService props;
     public String doCreateProposal() {
-        props.createNewProposal(prop);
+        props.createNewProposal(prop, id);
         return"";
     }
 }

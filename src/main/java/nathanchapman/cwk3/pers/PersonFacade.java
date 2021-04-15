@@ -23,10 +23,13 @@ public class PersonFacade extends AbstractFacade<Person> {
     @Override
     protected EntityManager getEntityManager() {
         return em;
-    }
-
+    }   
+            
     public PersonFacade() {
         super(Person.class);
     }
     
+    public Person getPersonById(Long id) { 
+        return em.find(Person.class, id);
+    }
 }
