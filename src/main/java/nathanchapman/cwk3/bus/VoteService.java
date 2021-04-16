@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package nathanchapman.cwk3.bus;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -38,4 +39,15 @@ public class VoteService {
         return vf.findAll();
         //return vf.getVotesByProposal(id);
    }
+    
+    public List<Vote> getVotesByProposalId(long id) {
+        List<Vote> allVote = vf.findAll();
+        List<Vote> temp = new ArrayList<>();
+        for (int i=0 ; i < allVote.size() ; i++) {
+            if (allVote.get(i).getProposal().getId() == id) {            
+               temp.add(allVote.get(i));
+            }     
+        }
+        return temp;
+    }
 }
