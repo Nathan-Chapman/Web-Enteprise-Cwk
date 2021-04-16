@@ -4,17 +4,30 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
         <title>SignUp</title>
+        <h:outputStylesheet  library ="css" name="main.css" />
     </h:head>
     <h:body>
-        <h:form>
-            <h:inputText value="#{personCtrl.p.firstName}"/>
-            <h:inputText value="#{personCtrl.p.lastName}"/>
-            <h:inputText value="#{personCtrl.p.email}"/>
-            <h:inputText value="#{personCtrl.p.password}"/>
-            <h:inputText value="#{personCtrl.p.nationalFederation}"/>
-            <h:inputText value="#{personCtrl.p.userRole}"/>
-            <h:commandButton value="Add" action="#{personCtrl.doCreatePerson()}"/>
-        </h:form>
+        <div class="header"> 
+            <h1> HEADERRRRRRRRRRRRRRRRRRRRR </h1>
+        </div>
+        <div class="main">
+            <h1 class="title"> Create account </h1>
+            <h:form class="createAccountArea">
+                <p class="pHead">First name </p>
+                <h:inputText class="button" value="#{personCtrl.p.firstName}"/>       
+                <p class="pHead">Last name </p>
+                <h:inputText class="button" value="#{personCtrl.p.lastName}"/>
+                <p class="pHead">Email </p>
+                <h:inputText class="button" value="#{personCtrl.p.email}"/>
+                <p class="pHead">Password </p>
+                <h:inputText class="button" value="#{personCtrl.p.password}"/>
+                <p class="pHead">National Federation </p>
+                <h:inputText class="button" value="#{personCtrl.p.nationalFederation}"/>
+                <p class="pHead">Role </p>
+                <h:inputText class="button" value="#{personCtrl.p.userRole}"/>
+                <h:commandButton class="buttonConfirm" value="Add" action="#{personCtrl.doCreatePerson()}"/>
+            </h:form>
+        </div>
     </h:body>
 </html>
 

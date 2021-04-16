@@ -1,0 +1,94 @@
+/* Import fonts from the Google Fonts API */
+@import url(https://fonts.googleapis.com/css?family=Montserrat); /* Logo font */
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans); /* Body font */
+@import url(https://fonts.googleapis.com/css?family=Roboto);  /* Button font */
+
+:root {
+    	--colour-fill-header: #FFFFFF;
+	--colour-fill-body: #EEEEEE;
+        
+    	--font-family-heading: "Noto Sans", serif; /* Font family for all h1, h2, h3... h6 elements */
+	--font-family-logo: "Montserrat", serif; /* Font family for logo element */
+	--font-family-body: "Noto Sans", sans-serif; /* Font family for all body text elements */
+	--font-family-button: "Roboto", sans-serif; /* Font family for button elements */
+        
+        	--colour-font-logo: #A6AEB0;
+	--colour-font-heading: #161922; /* Font colour for all h1, h2, h3... h6 elements */
+	--colour-font-body: #A3A5A8; /* Font colour for all body text elements */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-heading);
+    color: var(--colour-font-heading);
+}
+
+body {
+    background: var(--colour-fill-body);
+    font-family: var(--font-family-body);
+} 
+
+header > * {
+    margin: auto 0;
+    background: #FFFFFF;
+    padding-bottom: 20px;
+}
+
+.header {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    background-color: var(--colour-fill-header);
+}
+
+.main {
+    width: 100%;
+    padding: 0px;
+    background-color: var(--colour-fill-body);
+    
+}
+
+.createAccountArea {
+    width: 30%;
+    padding: 1em;
+    margin-bottom: 1em;
+    border-radius: 33px;
+    box-shadow: rgba(255, 255, 255, 0.5) -6px -6px 6px,
+    rgba(158, 158, 158, 0.5) 6px 6px 6px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.button {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1em;
+    width: 80%;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.buttonConfirm {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1em;
+    width: 50%;
+    height: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--colour-fill-header);
+}
+
+.pHead {
+    text-align: center;
+    font-size: 25px;
+}
+
+.title {
+    text-align: center;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
