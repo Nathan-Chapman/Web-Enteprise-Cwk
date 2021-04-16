@@ -5,9 +5,11 @@
  */
 package nathanchapman.cwk3.pers;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import nathanchapman.cwk3.ent.Vote;
 
 
@@ -28,5 +30,11 @@ public class VoteFacade extends AbstractFacade<Vote> {
             
     public VoteFacade() {
         super(Vote.class);
+    }
+    
+    public List<Vote> getVotesByProposal(long id) { //Might need to check for empty list idk
+        Query query = em.createQuery("SELECT * FROM Vote WHERE Vote.ID =:id", Vote.class);
+        List<Vote> votes = query.setParameter("id", id).getResultList();
+        return votes;
     }
 }

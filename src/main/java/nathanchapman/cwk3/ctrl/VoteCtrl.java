@@ -5,6 +5,8 @@
  */
 package nathanchapman.cwk3.ctrl;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
@@ -22,6 +24,9 @@ public class VoteCtrl {
     private Vote vote= new Vote();
     private long propId;
     private long personId;
+    
+    private List<Vote> allVotes = new ArrayList<>();
+    private long qId;
 
     public Vote getVote() {
         return vote;
@@ -45,6 +50,16 @@ public class VoteCtrl {
 
     public void setPersonId(long personId) {
         this.personId = personId;
+    }
+
+    public void getAllVotes() {
+        if (allVotes.isEmpty()) {
+            allVotes = vs.getAllVotes();       
+        }
+    }
+
+    public void setVotes(List<Vote> votes) {
+        this.allVotes = votes;
     }
 
     

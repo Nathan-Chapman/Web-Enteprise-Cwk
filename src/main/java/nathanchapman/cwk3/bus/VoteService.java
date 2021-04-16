@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package nathanchapman.cwk3.bus;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import nathanchapman.cwk3.ent.Vote;
@@ -32,4 +33,9 @@ public class VoteService {
         vf.create(vote);
         return vote;
     }
+    
+    public List<Vote> getAllVotes() {
+        return vf.findAll();
+        //return vf.getVotesByProposal(id);
+   }
 }
