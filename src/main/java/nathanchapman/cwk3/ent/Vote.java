@@ -11,7 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 /**
  *
@@ -25,10 +24,8 @@ public class Vote implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Integer vote;
-    
     @ManyToOne(targetEntity = Proposal.class)
     private Proposal proposal;
-    
     @ManyToOne(targetEntity = Person.class)
     private Person person;
 

@@ -28,4 +28,8 @@ public class ProposalFacade extends AbstractFacade<Proposal> {
     public ProposalFacade() {
         super(Proposal.class);
     }
+    
+        public Proposal getProposalById(long id) { 
+        return em.find(Proposal.class, id);
+    }
 }

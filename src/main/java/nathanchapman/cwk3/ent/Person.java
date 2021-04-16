@@ -30,9 +30,12 @@ public class Person implements Serializable {
     private String lastName;
     private String email;
     private String password;
+    private boolean adminStatus;
+    private String nationalFederation;
+    private String userRole;
     @OneToMany(targetEntity = Proposal.class, mappedBy = "person")
     private List<Proposal> proposals = new ArrayList<>();
-    @ManyToOne(targetEntity = Vote.class)
+    @OneToMany(targetEntity = Vote.class)
     private List<Vote> votes = new ArrayList<>();
 
     public List<Vote> getVotes() {
@@ -66,9 +69,6 @@ public class Person implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-    private boolean adminStatus;
-    private String nationalFederation;
-    private String userRole;
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;

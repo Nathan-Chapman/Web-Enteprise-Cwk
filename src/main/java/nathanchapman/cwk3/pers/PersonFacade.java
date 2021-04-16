@@ -29,7 +29,7 @@ public class PersonFacade extends AbstractFacade<Person> {
         super(Person.class);
     }
     
-    public Person getPersonById(Long id) { 
+    public Person getPersonById(long id) { 
         return em.find(Person.class, id);
     }
 }
