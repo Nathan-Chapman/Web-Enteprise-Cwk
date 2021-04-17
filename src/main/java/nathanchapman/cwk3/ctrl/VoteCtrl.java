@@ -48,8 +48,6 @@ public class VoteCtrl {
     public void setqId(long pId) {
         this.pId = pId;
     }
-
-    
     
     public Vote getVote() {
         return vote;
@@ -95,8 +93,14 @@ public class VoteCtrl {
     
     @EJB
     private VoteService vs;
+    
     public String doCreateVote() {
         vs.createNewVote(vote, propId, personId);
+        return"";
+    }
+    
+    public String changeVote() {
+        vs.changeVote(vote, propId, personId);
         return"";
     }
 }

@@ -42,8 +42,7 @@ public class ProposalCtrl {
      */
     public ProposalCtrl() {
     }
-    
-    
+   
     @EJB
     private ProposalService props;
     
