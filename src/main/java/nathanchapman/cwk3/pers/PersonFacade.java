@@ -31,5 +31,5 @@ public class PersonFacade extends AbstractFacade<Person> {
     
     public Person getPersonById(long id) { 
         return em.find(Person.class, id);
-    }
+    }  
 }

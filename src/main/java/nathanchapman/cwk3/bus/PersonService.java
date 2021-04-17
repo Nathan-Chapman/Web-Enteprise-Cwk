@@ -47,7 +47,7 @@ public class PersonService {
         return temp;
     }
         
-            public List<Vote> getVotesByPersonId(long id) {
+        public List<Vote> getVotesByPersonId(long id) {
         List<Vote> allVotes = vf.findAll();
         List<Vote> temp = new ArrayList<>();
         for (int i=0 ; i < allVotes.size() ; i++) {
@@ -56,5 +56,19 @@ public class PersonService {
             }     
         }
         return temp;
+    }
+
+    public String logIn(String email, String password) {
+        Person temp;
+        List<Person> allPerson = pf.findAll();
+        for (int i = 0 ; i < allPerson.size() ; i++) {
+            if (allPerson.get(i).getEmail().equals(email)) {
+                temp = allPerson.get(i);
+                if (temp.getPassword().equals(password)) {
+                    return "Successfully logged in";
+                }
+            }
+        }
+        return "Email or password incorrect";
     }
 }

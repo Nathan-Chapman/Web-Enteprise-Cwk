@@ -44,33 +44,15 @@ header > * {
     background-color: var(--colour-fill-header);
 }
 
+.headerRight {
+    display: flex;
+    justify-content: space-around;
+}
 .main {
     width: 100%;
     padding: 0px;
     background-color: var(--colour-fill-body);
     
-}
-
-.createAccountArea {
-    width: 30%;
-    padding: 1em;
-    margin-bottom: 1em;
-    border-radius: 33px;
-    box-shadow: rgba(255, 255, 255, 0.5) -6px -6px 6px,
-    rgba(158, 158, 158, 0.5) 6px 6px 6px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.createProposalArea {
-    width: 50%;
-    padding: 1em;
-    margin-bottom: 1em;
-    border-radius: 33px;
-    box-shadow: rgba(255, 255, 255, 0.5) -6px -6px 6px,
-    rgba(158, 158, 158, 0.5) 6px 6px 6px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .button {
@@ -117,4 +99,37 @@ header > * {
     text-align: center;
     padding-top: 25px;
     padding-bottom: 25px;
+}
+
+.createAccountArea {
+    width: 30%;
+    padding: 1em;
+    margin-bottom: 1em;
+    border-radius: 33px;
+    box-shadow: rgba(255, 255, 255, 0.5) -6px -6px 6px,
+    rgba(158, 158, 158, 0.5) 6px 6px 6px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.createProposalArea {
+    width: 50%;
+    padding: 1em;
+    margin-bottom: 1em;
+    border-radius: 33px;
+    box-shadow: rgba(255, 255, 255, 0.5) -6px -6px 6px,
+    rgba(158, 158, 158, 0.5) 6px 6px 6px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.signInArea {
+    width: 20%;
+    padding: 1em;
+    margin-bottom: 1em;
+    border-radius: 33px;
+    box-shadow: rgba(255, 255, 255, 0.5) -6px -6px 6px,
+    rgba(158, 158, 158, 0.5) 6px 6px 6px;
+    margin-left: auto;
+    margin-right: auto;
 }

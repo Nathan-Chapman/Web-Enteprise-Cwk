@@ -33,5 +33,4 @@ public class ProposalService {
         propF.create(prop);
         return prop;
     }
-    
 }
