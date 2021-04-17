@@ -46,8 +46,19 @@ public class ProposalCtrl {
     
     @EJB
     private ProposalService props;
+    
     public String doCreateProposal() {
         props.createNewProposal(prop, id);
+        return"";
+    }
+    
+    public String changeProposal() {
+        props.changeProposal(prop, id);
+        return"";
+    }
+    
+    public String deleteProposal() {
+        props.changeProposal(prop, id);
         return"";
     }
 }

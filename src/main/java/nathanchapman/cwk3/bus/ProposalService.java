@@ -33,4 +33,16 @@ public class ProposalService {
         propF.create(prop);
         return prop;
     }
+    
+    public Proposal changeProposal(Proposal prop, long id) {
+        prop.setPerson(pF.getPersonById(id));
+        propF.edit(prop);
+        return prop;
+    }
+    
+    public Proposal deleteProposal(Proposal prop, long id) {
+        prop.setPerson(pF.getPersonById(id));
+        propF.remove(prop);
+        return prop;
+    }
 }
