@@ -36,7 +36,7 @@ public class PersonService {
         return p;
     }
     
-        public List<Proposal> getProposalByUser(long id) {
+    public List<Proposal> getProposalByUser(long id) {
         List<Proposal> allProposal = propf.findAll();
         List<Proposal> temp = new ArrayList<>();
         for (int i=0 ; i < allProposal.size() ; i++) {

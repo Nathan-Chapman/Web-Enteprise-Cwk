@@ -37,9 +37,6 @@ public class ProposalCtrl {
         this.prop = prop;
     }
 
-    /**
-     * Creates a new instance of ProposalCtrl
-     */
     public ProposalCtrl() {
     }
    
