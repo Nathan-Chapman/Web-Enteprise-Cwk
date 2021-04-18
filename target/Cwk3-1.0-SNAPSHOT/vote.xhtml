@@ -7,12 +7,12 @@
     </h:head>
     <h:body>
         <h:form>
-            <h:inputText value="#{voteCtrl.vote.vote}"/>
-            <h:inputText value="#{voteCtrl.propId}"/>
-            <h:inputText value="#{voteCtrl.personId}"/>
-            <h:commandButton value="Add" action="#{voteCtrl.doCreateVote()}"/>
+            <h:inputText value="#{personCtrl.vote.vote}"/>
+            <h:inputText value="#{personCtrl.propId}"/>
+            <h:inputText value="#{personCtrl.personId}"/>
+            <h:commandButton value="Add" action="#{personCtrl.doCreateVote()}"/>
             <p>
-                <h:dataTable value="#{voteCtrl.votes}" var="v" > 
+                <h:dataTable value="#{personCtrl.votes}" var="v" > 
                     <h:column> 
                         <h:outputText value="#{v.id}"/>
                     </h:column>

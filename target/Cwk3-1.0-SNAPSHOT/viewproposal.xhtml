@@ -9,7 +9,7 @@
     </h:head>
     <f:metadata>
         <f:viewParam name="id" value="#{proposalCtrl.id}"/>
-        <f:event type="preRenderView" listener="#{proposalCtrl.displayProposalById()}" /> 
+        <f:event type="preRenderView" listener="#{personCtrl.displayProposalById()}" /> 
     </f:metadata>
     <h:body>
         <div class="header"> 
@@ -24,10 +24,10 @@
         </div>
         <div class="main">
             <table>
-                <h:outputText value ="#{proposalCtrl.prop.title}" />
-                <h:outputText value ="#{proposalCtrl.prop.ruleInQ}" />
-                <h:outputText value ="#{proposalCtrl.prop.change}" />
-                <h:outputText value ="#{proposalCtrl.prop.reason}" />
+                <h:outputText value ="#{personCtrl.prop.title}" />
+                <h:outputText value ="#{personCtrl.prop.ruleInQ}" />
+                <h:outputText value ="#{personCtrl.prop.change}" />
+                <h:outputText value ="#{personCtrl.prop.reason}" />
             </table>
         </div>
     </h:body>
