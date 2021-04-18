@@ -32,7 +32,11 @@
                 <h:outputText value ="#{personCtrl.prop.ruleInQ}" />
                 <h:outputText value ="#{personCtrl.prop.change}" />
                 <h:outputText value ="#{personCtrl.prop.reason}" />
-            </table>
+            </table>  
+        <h:form>
+            <h:inputText value="#{personCtrl.vote.vote}"/>
+            <h:commandButton value="Add" action="#{personCtrl.doCreateVote()}"/>
+        </h:form>
         </div>
     </h:body>
 </html>

@@ -40,7 +40,7 @@ public class PersonCtrl implements Serializable {
     List<Proposal> allProp = new ArrayList<>();
 
     private Vote vote= new Vote();
-    private long propId;
+    private long propId = 2;
     private long personId;
     
     private List<Vote> allVotes = new ArrayList<>();
@@ -80,9 +80,7 @@ public class PersonCtrl implements Serializable {
     }
     
     public String displayProposalById() {
-        Map<String, String>  res = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-        setId(Long.valueOf(res.get("id")));
-        setProp(props.getPropById(id));
+        setProp(props.getPropById(getPropId()));
         return "";
     }
     
@@ -94,6 +92,7 @@ public class PersonCtrl implements Serializable {
             setLoggedInUser(ps.getUserByEmail(getEmail()));
             setHome("Click for home page");
             setLoggedInResult(res);
+            setPersonId(getLoggedInUser().getId());
             updateHeaderLogIn();
         }
         setLogedIn(false);
@@ -104,6 +103,7 @@ public class PersonCtrl implements Serializable {
         setLogedIn(false);
         setLoggedInUser(p);
         updateHeaderLogOut();
+        setPersonId(0);
     }
     
     public String doCreateVote() {
