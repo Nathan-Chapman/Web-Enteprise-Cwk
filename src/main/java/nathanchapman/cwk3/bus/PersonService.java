@@ -71,4 +71,15 @@ public class PersonService {
         }
         return "Email or password incorrect";
     }
+    
+    public Person getUserByEmail(String email) {
+        Person temp;
+        List<Person> allPerson = pf.findAll();
+        for (int i = 0 ; i < allPerson.size() ; i++) {
+            if (allPerson.get(i).getEmail().equals(email)) {
+                return allPerson.get(i);
+                }
+            }
+        return null;
+    }
 }

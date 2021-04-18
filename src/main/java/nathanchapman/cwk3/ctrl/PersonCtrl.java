@@ -25,6 +25,9 @@ import nathanchapman.cwk3.ent.Vote;
 public class PersonCtrl implements Serializable {
 
     private Person p = new Person();
+    private Person loggedInUser = new Person();
+    private boolean logedIn = false;
+    private String loggedInResult;
     private String email;
     private String password; //Shouldnt store it in plain text
     
@@ -39,6 +42,30 @@ public class PersonCtrl implements Serializable {
     private List<Vote> allVotes = new ArrayList<>();
     private List<Vote> votes = new ArrayList<>();
     private long pId = 2;
+
+    public String getLoggedInResult() {
+        return loggedInResult;
+    }
+
+    public void setLoggedInResult(String loggedInResult) {
+        this.loggedInResult = loggedInResult;
+    }  
+    
+    public Person getLoggedInUser() {
+        return loggedInUser;
+    }
+
+    public void setLoggedInUser(Person loggedInUser) {
+        this.loggedInUser = loggedInUser;
+    }
+
+    public boolean isLogedIn() {
+        return logedIn;
+    }
+
+    public void setLogedIn(boolean logedIn) {
+        this.logedIn = logedIn;
+    }
     
     public List<Vote> getVotes() {
         if (votes.isEmpty()) {
@@ -182,16 +209,12 @@ public class PersonCtrl implements Serializable {
     }
     
     public void logIn() {
-        setLogInResult(ps.logIn(getEmail(), getPassword()));
-    }
-    private String logInResult;
-
-    public String getLogInResult() {
-        return logInResult;
-    }
-
-    public void setLogInResult(String logInResult) {
-        this.logInResult = logInResult;
+        String res = ps.logIn(getEmail(), getPassword());
+        if (res.equals("Successfully logged in")) {
+            setLoggedInResult(res);
+            setLogedIn(true);
+            setLoggedInUser(ps.getUserByEmail(getEmail()));
+        }
     }
     
     public String doCreateVote() {
