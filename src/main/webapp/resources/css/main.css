@@ -48,11 +48,16 @@ header > * {
 .headerLeft {
     display: flex;
     justify-content: space-around;
-    width: 80%;
+    width: 90%;
 }
 .headerRight {
-    width: 20%;
+    width: 10%;
 }
+
+.headerSearch {
+    display: flex
+}
+
 .main {
     width: 100%;
     padding: 0px;

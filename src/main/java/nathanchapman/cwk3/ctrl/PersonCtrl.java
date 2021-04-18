@@ -93,8 +93,17 @@ public class PersonCtrl implements Serializable {
             setLogedIn(true);
             setLoggedInUser(ps.getUserByEmail(getEmail()));
             setHome("Click for home page");
-            updateHeader();
+            setLoggedInResult(res);
+            updateHeaderLogIn();
         }
+        setLogedIn(false);
+        setLoggedInResult(res);
+    }
+    
+    public void logOut() { // Need to update top right header when ran
+        setLogedIn(false);
+        setLoggedInUser(p);
+        updateHeaderLogOut();
     }
     
     public String doCreateVote() {
@@ -107,9 +116,15 @@ public class PersonCtrl implements Serializable {
         return"";
     }
 
-         public String updateHeader() {
+        public String updateHeaderLogIn() {
          setUpdateSignInLink("");
          setUpdateUserPage("User page here // log out on this page");
+         return "";
+     }
+         
+    public String updateHeaderLogOut() {
+         setUpdateSignInLink("SignIn");
+         setUpdateUserPage("");
          return "";
      }
     
