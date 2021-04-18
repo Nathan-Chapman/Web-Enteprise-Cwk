@@ -19,6 +19,26 @@
             </h:form>
         </div>
         <h:link value="Home" outcome="viewproposal.xhtml?id=1"></h:link>
+        <div>
+            <h:form>
+                <p>
+                <h:dataTable value="#{proposalCtrl.allProp}" var="p"> 
+                    <h:column>
+                        <h:outputText value ="#{p.title}"/>
+                    </h:column>
+                   <h:column>
+                       <h:outputText value ="#{p.ruleInQ}"/>
+                    </h:column>
+                    <h:column>
+                        <h:outputText value ="#{p.change}"/>
+                    </h:column>
+                    <h:column>
+                        <h:outputText value ="#{p.reason}"/>
+                    </h:column>
+                </h:dataTable>
+                </p>
+            </h:form>
+        </div>
     </h:body>
 </html>
 

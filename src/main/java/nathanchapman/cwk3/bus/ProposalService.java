@@ -5,12 +5,10 @@
  */
 package nathanchapman.cwk3.bus;
 
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import nathanchapman.cwk3.ent.Proposal;
-import nathanchapman.cwk3.ent.Vote;
 import nathanchapman.cwk3.pers.PersonFacade;
 import nathanchapman.cwk3.pers.ProposalFacade;
 import nathanchapman.cwk3.pers.VoteFacade;
@@ -47,7 +45,6 @@ public class ProposalService {
         return prop;
     }
     
-    //THIS METHOD DOESNT WORK IDK WHY BUT IT ALWAYS RETURNS NULL
     public Proposal getPropById(long id) {
         List<Proposal> allProposal = propf.findAll();
         for (int i=0 ; i < allProposal.size() ; i++) {
@@ -56,5 +53,9 @@ public class ProposalService {
             }     
         }
         return null;
+    }
+    
+    public List<Proposal> getAllProposals() {
+        return propf.findAll();
     }
 }

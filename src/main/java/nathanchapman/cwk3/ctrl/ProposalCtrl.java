@@ -5,6 +5,8 @@
  */
 package nathanchapman.cwk3.ctrl;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -19,7 +21,19 @@ public class ProposalCtrl {
     
     private Proposal prop = new Proposal();
     private long id;
+    List<Proposal> allProp = new ArrayList<>();
 
+    public List<Proposal> getAllProp() {
+        if (allProp.isEmpty()) {
+            allProp = props.getAllProposals();
+        }
+        return allProp;
+    }
+
+    public void setAllProp(List<Proposal> allProp) {
+        this.allProp = allProp;
+    }
+    
     public long getId() {
         return id;
     }
@@ -28,7 +42,6 @@ public class ProposalCtrl {
         this.id = id;
     }
     public Proposal getProp() {
-        displayProposalById();
         return prop;
     }
     
