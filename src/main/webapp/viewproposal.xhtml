@@ -12,14 +12,17 @@
         <f:event type="preRenderView" listener="#{personCtrl.displayProposalById()}" /> 
     </f:metadata>
     <h:body>
-        <div class="header"> 
-            <h:form class="headerRight">
+            <div class="header"> 
+            <h:form class="headerLeft">
                 <h:link value="Home" outcome="home.xhtml"></h:link>
                 <h2> Search</h2>
                 <h2>create prop</h2>
-                <h:link value="Signin" outcome="signin.xhtml"></h:link>
-                <h:link value="Signup" outcome="signup.xhtml"></h:link>
-                <h2>logout</h2>
+            </h:form>
+            <h:form class ="headerRight">
+                <h:link value="#{personCtrl.updateSignInLink}" outcome="signin.xhtml"></h:link>
+                <h:link value="#{personCtrl.updateUserPage}" outcome="userpage.xhtml?id=#{personCtrl.id}"></h:link>
+                <!-- <h:link value="Signup" outcome="signup.xhtml"></h:link> -->
+                <!-- <h2>logout</h2> -->
             </h:form>
         </div>
         <div class="main">

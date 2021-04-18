@@ -42,11 +42,16 @@ header > * {
     padding-top: 25px;
     padding-bottom: 25px;
     background-color: var(--colour-fill-header);
+    display: flex;
 }
 
-.headerRight {
+.headerLeft {
     display: flex;
     justify-content: space-around;
+    width: 80%;
+}
+.headerRight {
+    width: 20%;
 }
 .main {
     width: 100%;

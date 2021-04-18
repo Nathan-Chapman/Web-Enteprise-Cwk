@@ -5,14 +5,18 @@
  */
 package nathanchapman.cwk3.ctrl;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
+import static javax.faces.context.FacesContext.getCurrentInstance;
 import nathanchapman.cwk3.bus.PersonService;
 import nathanchapman.cwk3.bus.ProposalService;
 import nathanchapman.cwk3.bus.VoteService;
@@ -42,7 +46,92 @@ public class PersonCtrl implements Serializable {
     private List<Vote> allVotes = new ArrayList<>();
     private List<Vote> votes = new ArrayList<>();
     private long pId = 2;
+    
+    //ui vars
+    private String updateSignInLink = "SignIn";
+    private String updateUserPage ="";
+    
+    @EJB
+    private PersonService ps;
+    @EJB
+    private ProposalService props;
+     @EJB
+    private VoteService vs;
 
+     public String changeUi() {
+         setUpdateSignInLink("");
+         setUpdateUserPage("User page here // log out on this page");
+         return "";
+     }
+
+    public String doCreatePerson() {
+        ps.createNewPerson(p);
+        return "";
+    }
+    
+    public String doCreateProposal() {
+        props.createNewProposal(prop, id);
+        return"";
+    }
+    
+    public String changeProposal() {
+        props.changeProposal(prop, id);
+        return"";
+    }
+    
+    public String deleteProposal() {
+        props.changeProposal(prop, id);
+        return"";
+    }
+    
+    public String displayProposalById() {
+        Map<String, String>  res = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        setId(Long.valueOf(res.get("id")));
+        setProp(props.getPropById(id));
+        return "";
+    }
+    
+    public String logIn() {
+        String res = ps.logIn(getEmail(), getPassword());
+        if (res.equals("Successfully logged in")) {
+            setLoggedInResult(res);
+            setLogedIn(true);
+            setLoggedInUser(ps.getUserByEmail(getEmail()));
+            return "home.xhtml";
+        }
+        return "signin.xhtml";
+    }
+    
+    public String doCreateVote() {
+        vs.createNewVote(vote, propId, personId);
+        return"";
+    }
+    
+    public String changeVote() {
+        vs.changeVote(vote, propId, personId);
+        return"";
+    }
+
+    //GETTER AND SETTERS
+
+    public String getUpdateSignInLink() {
+        return updateSignInLink;
+    }
+
+    public void setUpdateSignInLink(String updateSignInLink) {
+        this.updateSignInLink = updateSignInLink;
+    }
+
+    public String getUpdateUserPage() {
+        return updateUserPage;
+    }
+
+    public void setUpdateUserPage(String updateUserPage) {
+        this.updateUserPage = updateUserPage;
+    }
+    
+    
+    
     public String getLoggedInResult() {
         return loggedInResult;
     }
@@ -74,7 +163,7 @@ public class PersonCtrl implements Serializable {
         votes = vs.getVotesByProposalId(pId);
         return votes;
     }
-
+    
     public void setVotes(List<Vote> votes) {
         this.votes = votes;
     }
@@ -172,58 +261,5 @@ public class PersonCtrl implements Serializable {
     
     public void setProp(Proposal prop) {
         this.prop = prop;
-    }
-    
-    @EJB
-    private PersonService ps;
-    @EJB
-    private ProposalService props;
-     @EJB
-    private VoteService vs;
-
-    public String doCreatePerson() {
-        ps.createNewPerson(p);
-        return "";
-    }
-    
-    public String doCreateProposal() {
-        props.createNewProposal(prop, id);
-        return"";
-    }
-    
-    public String changeProposal() {
-        props.changeProposal(prop, id);
-        return"";
-    }
-    
-    public String deleteProposal() {
-        props.changeProposal(prop, id);
-        return"";
-    }
-    
-    public String displayProposalById() {
-        Map<String, String>  res = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-        setId(Long.valueOf(res.get("id")));
-        setProp(props.getPropById(id));
-        return "";
-    }
-    
-    public void logIn() {
-        String res = ps.logIn(getEmail(), getPassword());
-        if (res.equals("Successfully logged in")) {
-            setLoggedInResult(res);
-            setLogedIn(true);
-            setLoggedInUser(ps.getUserByEmail(getEmail()));
-        }
-    }
-    
-    public String doCreateVote() {
-        vs.createNewVote(vote, propId, personId);
-        return"";
-    }
-    
-    public String changeVote() {
-        vs.changeVote(vote, propId, personId);
-        return"";
     }
 }
