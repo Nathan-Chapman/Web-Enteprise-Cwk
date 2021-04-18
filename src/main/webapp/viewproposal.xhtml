@@ -1,11 +1,16 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>SignIn</title>
+        <title>View Proposal</title>
         <h:outputStylesheet  library ="css" name="main.css" />
     </h:head>
+    <f:metadata>
+        <f:viewParam name="id" value="#{proposalCtrl.id}"/>
+        <f:event type="preRenderView" listener="#{proposalCtrl.displayProposalById()}" /> 
+    </f:metadata>
     <h:body>
         <div class="header"> 
             <h:form class="headerRight">
@@ -18,15 +23,12 @@
             </h:form>
         </div>
         <div class="main">
-            <h1 class="title"> Sign in </h1>
-            <h:form class="signInArea">
-                <p class="pHead">Email </p>
-                <h:inputText class="button" value="#{personCtrl.email}"/>       
-                <p class="pHead">Password </p>
-                <h:inputText class="button" value="#{personCtrl.password}"/>
-                <h:commandButton class="buttonConfirm" value="Log in" action="#{personCtrl.logIn()}"/>
-            </h:form>
-            <h:outputText value="#{personCtrl.logInResult}"/>
+            <table>
+                <h:outputText value ="#{proposalCtrl.prop.title}" />
+                <h:outputText value ="#{proposalCtrl.prop.ruleInQ}" />
+                <h:outputText value ="#{proposalCtrl.prop.change}" />
+                <h:outputText value ="#{proposalCtrl.prop.reason}" />
+            </table>
         </div>
     </h:body>
 </html>

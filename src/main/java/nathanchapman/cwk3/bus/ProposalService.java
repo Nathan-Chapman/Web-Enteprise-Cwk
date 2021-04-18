@@ -47,11 +47,12 @@ public class ProposalService {
         return prop;
     }
     
+    //THIS METHOD DOESNT WORK IDK WHY BUT IT ALWAYS RETURNS NULL
     public Proposal getPropById(long id) {
         List<Proposal> allProposal = propf.findAll();
         for (int i=0 ; i < allProposal.size() ; i++) {
             if (allProposal.get(i).getId() == id) {            
-               return(allProposal.get(i));
+               return allProposal.get(i);
             }     
         }
         return null;

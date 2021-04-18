@@ -5,15 +5,17 @@
  */
 package nathanchapman.cwk3.ctrl;
 
+import java.io.Serializable;
+import javax.annotation.ManagedBean;
 import javax.ejb.EJB;
 import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import nathanchapman.cwk3.bus.PersonService;
 import nathanchapman.cwk3.ent.Person;
 
 @Named(value = "personCtrl")
-@RequestScoped
-public class PersonCtrl {
+@SessionScoped
+public class PersonCtrl implements Serializable {
 
     private Person p = new Person();
     private String email;

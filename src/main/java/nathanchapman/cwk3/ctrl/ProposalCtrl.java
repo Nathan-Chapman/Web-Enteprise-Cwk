@@ -5,16 +5,14 @@
  */
 package nathanchapman.cwk3.ctrl;
 
+import java.util.Map;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import nathanchapman.cwk3.bus.ProposalService;
 import nathanchapman.cwk3.ent.Proposal;
 
-/**
- *
- * @author natha
- */
 @Named(value = "proposalCtrl")
 @RequestScoped
 public class ProposalCtrl {
@@ -30,6 +28,7 @@ public class ProposalCtrl {
         this.id = id;
     }
     public Proposal getProp() {
+        displayProposalById();
         return prop;
     }
     
@@ -56,5 +55,12 @@ public class ProposalCtrl {
     public String deleteProposal() {
         props.changeProposal(prop, id);
         return"";
+    }
+    
+    public String displayProposalById() {
+        Map<String, String>  res = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        setId(Long.valueOf(res.get("id")));
+        setProp(props.getPropById(id));
+        return "";
     }
 }
