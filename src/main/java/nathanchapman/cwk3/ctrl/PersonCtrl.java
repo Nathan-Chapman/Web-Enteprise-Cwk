@@ -50,6 +50,7 @@ public class PersonCtrl implements Serializable {
     //ui vars
     private String updateSignInLink = "SignIn";
     private String updateUserPage ="";
+    private String home ="";
     
     @EJB
     private PersonService ps;
@@ -57,12 +58,6 @@ public class PersonCtrl implements Serializable {
     private ProposalService props;
      @EJB
     private VoteService vs;
-
-     public String changeUi() {
-         setUpdateSignInLink("");
-         setUpdateUserPage("User page here // log out on this page");
-         return "";
-     }
 
     public String doCreatePerson() {
         ps.createNewPerson(p);
@@ -91,15 +86,15 @@ public class PersonCtrl implements Serializable {
         return "";
     }
     
-    public String logIn() {
+    public void logIn() {
         String res = ps.logIn(getEmail(), getPassword());
         if (res.equals("Successfully logged in")) {
             setLoggedInResult(res);
             setLogedIn(true);
             setLoggedInUser(ps.getUserByEmail(getEmail()));
-            return "home.xhtml";
+            setHome("Click for home page");
+            updateHeader();
         }
-        return "signin.xhtml";
     }
     
     public String doCreateVote() {
@@ -112,8 +107,22 @@ public class PersonCtrl implements Serializable {
         return"";
     }
 
+         public String updateHeader() {
+         setUpdateSignInLink("");
+         setUpdateUserPage("User page here // log out on this page");
+         return "";
+     }
+    
     //GETTER AND SETTERS
 
+    public String getHome() {
+        return home;
+    }
+
+    public void setHome(String home) {
+        this.home = home;
+    }
+    
     public String getUpdateSignInLink() {
         return updateSignInLink;
     }
@@ -129,8 +138,6 @@ public class PersonCtrl implements Serializable {
     public void setUpdateUserPage(String updateUserPage) {
         this.updateUserPage = updateUserPage;
     }
-    
-    
     
     public String getLoggedInResult() {
         return loggedInResult;

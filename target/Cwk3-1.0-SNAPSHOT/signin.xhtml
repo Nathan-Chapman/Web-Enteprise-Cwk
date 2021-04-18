@@ -26,7 +26,10 @@
                 <h:inputText class="button" value="#{personCtrl.password}"/>
                 <h:commandButton class="buttonConfirm" value="Log in" action="#{personCtrl.logIn()}"/>
             </h:form>
-            <h:outputText value="#{personCtrl.loggedInResult}"/>
+            <h:form>
+                <h:outputText value="#{personCtrl.loggedInResult}"/>
+                <h:link value="#{personCtrl.home}" outcome="home.xhtml"></h:link>
+            </h:form>
         </div>
     </h:body>
 </html>
