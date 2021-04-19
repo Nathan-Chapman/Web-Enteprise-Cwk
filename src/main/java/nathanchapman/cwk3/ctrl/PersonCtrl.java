@@ -35,6 +35,7 @@ public class PersonCtrl implements Serializable {
     private List<Vote> allVotes = new ArrayList<>();
     private List<Vote> votes = new ArrayList<>();
     private long pId = 2;
+    private boolean propOwner = false;
     
     //ui vars
     private String updateSignInLink = "SignIn";
@@ -56,6 +57,8 @@ public class PersonCtrl implements Serializable {
     
     public String doCreateProposal() {
         props.createNewProposal(prop, id);
+        setProp(null);
+        setProp(new Proposal());
         return"";
     }
     
@@ -297,4 +300,22 @@ public class PersonCtrl implements Serializable {
     public void setProp(Proposal prop) {
         this.prop = prop;
     }
+
+    public long getpId() {
+        return pId;
+    }
+
+    public void setpId(long pId) {
+        this.pId = pId;
+    }
+
+    public boolean isPropOwner() {
+        return propOwner;
+    }
+
+    public void setPropOwner(boolean propOwner) {
+        this.propOwner = propOwner;
+    }
+    
+    
 }

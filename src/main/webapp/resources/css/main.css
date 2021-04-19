@@ -79,9 +79,10 @@ header > * {
     flex-direction: column;
     margin-top: 1em;
     width: 75%;
-    height: 7.5em;
+    height: 5em;
     margin-left: auto;
     margin-right: auto;
+    font-size: 18px;
 }
 .buttonConfirm {
     display: flex;
@@ -142,4 +143,34 @@ header > * {
     rgba(158, 158, 158, 0.5) 6px 6px 6px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.proposalDisplayArea {
+    display: block;
+    width: 40%;
+    padding: 1em;
+    margin-bottom: 1em;
+    border-radius: 33px;
+    box-shadow: rgba(255, 255, 255, 0.5) -6px -6px 6px,
+    rgba(158, 158, 158, 0.5) 6px 6px 6px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+}
+
+.displayPropText {
+    font-size: 25px;
+    margin-left: 5%;
+}
+
+.divLine {
+    border-top: 2px solid #bbb;
+    border-radius: 5px;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.displayPropText2 {
+    font-size: 15px;
 }

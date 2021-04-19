@@ -26,19 +26,35 @@
                 <h:link value="#{personCtrl.updateUserPage}" outcome="userpage.xhtml?id=#{personCtrl.id}"></h:link>
             </h:form>
         </div>
-        <div class="main">
-            <table>
-                <h:outputText value ="#{personCtrl.prop.title}" />
-                <h:outputText value ="#{personCtrl.prop.ruleInQ}" />
-                <h:outputText value ="#{personCtrl.prop.change}" />
-                <h:outputText value ="#{personCtrl.prop.reason}" />
+        <div class="proposalDisplayArea">
+            <table class="card">
+                 <p class="displayPropText">Proposal Title</p>
+                 <hr class="divLine"></hr>
+                <h:outputText class="displayPropText2" value ="#{personCtrl.prop.title}" />
+                 <hr class="divLine"></hr>
+                <p class="displayPropText">Rule in consideration to be amended</p>
+                 <hr class="divLine"></hr>
+                <h:outputText class="displayPropText2" value ="#{personCtrl.prop.ruleInQ}" />
+                 <hr class="divLine"></hr>
+                <p class="displayPropText"> Change to the rule Title </p>
+                <hr class="divLine"></hr>
+                <h:outputText class="displayPropText2" value ="#{personCtrl.prop.change}" />
+                 <hr class="divLine"></hr>  
+                 <p class="displayPropText"> Reasoning behind changing the rule </p>
+                 <hr class="divLine"></hr>  
+                <h:outputText class="displayPropText2" value ="#{personCtrl.prop.reason}" />
+                 <hr class="divLine"></hr>
             </table>  
         <h:form rendered="#{!personCtrl.logedIn}">   
-            <p> Please log into vote </p>
+            <p> To vote you need to be logged in </p>
+        </h:form>
+        <h:form rendered="#{personCtrl.propOwner}">
+            <p>This is your proposal</p>
         </h:form>
         <h:form rendered="#{personCtrl.logedIn}">   
+                <p>If you have already voted voting again will change your vote</p>
             <h:inputText value="#{personCtrl.vote.vote}"/>
-            <h:commandButton value="Add" action="#{personCtrl.doCreateVote()}"/>
+            <h:commandButton value="VOTE" action="#{personCtrl.doCreateVote()}"/>
         </h:form>
         </div>
     </h:body>

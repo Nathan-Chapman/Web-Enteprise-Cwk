@@ -45,7 +45,6 @@ public class VoteService {
     
     public List<Vote> getAllVotes() {
         return vf.findAll();
-        //return vf.getVotesByProposal(id);
    }
     
     public List<Vote> getVotesByProposalId(long id) {
