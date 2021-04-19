@@ -33,7 +33,10 @@
                 <h:outputText value ="#{personCtrl.prop.change}" />
                 <h:outputText value ="#{personCtrl.prop.reason}" />
             </table>  
-        <h:form>
+        <h:form rendered="#{!personCtrl.logedIn}">   
+            <p> Please log into vote </p>
+        </h:form>
+        <h:form rendered="#{personCtrl.logedIn}">   
             <h:inputText value="#{personCtrl.vote.vote}"/>
             <h:commandButton value="Add" action="#{personCtrl.doCreateVote()}"/>
         </h:form>

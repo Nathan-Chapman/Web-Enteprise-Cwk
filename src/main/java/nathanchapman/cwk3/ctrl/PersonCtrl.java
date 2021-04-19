@@ -1,22 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package nathanchapman.cwk3.ctrl;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.context.FacesContext;
-import static javax.faces.context.FacesContext.getCurrentInstance;
 import nathanchapman.cwk3.bus.PersonService;
 import nathanchapman.cwk3.bus.ProposalService;
 import nathanchapman.cwk3.bus.VoteService;
@@ -51,6 +40,7 @@ public class PersonCtrl implements Serializable {
     private String updateSignInLink = "SignIn";
     private String updateUserPage ="";
     private String home ="";
+    private String hasVotedText ="Please log into vote";
     
     @EJB
     private PersonService ps;
@@ -81,6 +71,10 @@ public class PersonCtrl implements Serializable {
     
     public String displayProposalById() {
         setProp(props.getPropById(getPropId()));
+        if (logedIn == false) {
+            setHasVotedText("Please log into vote");
+        }
+        setHasVotedText("");
         return "";
     }
     
@@ -94,9 +88,11 @@ public class PersonCtrl implements Serializable {
             setLoggedInResult(res);
             setPersonId(getLoggedInUser().getId());
             updateHeaderLogIn();
+            setHasVotedText("");
+        } else {
+            setLogedIn(false);
+            setLoggedInResult(res);
         }
-        setLogedIn(false);
-        setLoggedInResult(res);
     }
     
     public void logOut() { // Need to update top right header when ran
@@ -104,15 +100,24 @@ public class PersonCtrl implements Serializable {
         setLoggedInUser(p);
         updateHeaderLogOut();
         setPersonId(0);
+        setHasVotedText("Please log into vote");
     }
     
     public String doCreateVote() {
+        if (vs.userAlreadyVoted(personId, propId)) {
+            changeVote();
+             return"";
+        }
         vs.createNewVote(vote, propId, personId);
+        setVote(null);
+        setVote(new Vote());
         return"";
     }
     
     public String changeVote() {
         vs.changeVote(vote, propId, personId);
+         setVote(null);
+        setVote(new Vote());
         return"";
     }
 
@@ -130,6 +135,14 @@ public class PersonCtrl implements Serializable {
     
     //GETTER AND SETTERS
 
+    public String getHasVotedText() {
+        return hasVotedText;
+    }
+
+    public void setHasVotedText(String hasVotedText) {
+        this.hasVotedText = hasVotedText;
+    }
+    
     public String getHome() {
         return home;
     }
