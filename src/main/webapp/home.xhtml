@@ -15,36 +15,36 @@
                     <h2> search</h2>
                     <h2>Search box</h2>
                 </div>
-            <h2>create prop</h2>
+            <h:link value="Create proposal" outcome="createproposal.xhtml"></h:link>
             </h:form>
             <h:form class ="headerRight">
                 <h:link value="#{personCtrl.updateSignInLink}" outcome="signin.xhtml"></h:link>
                 <h:link value="#{personCtrl.updateUserPage}" outcome="userpage.xhtml?id=#{personCtrl.id}"></h:link>
             </h:form>
         </div>
-        <h:link value="Home" outcome="viewproposal.xhtml?id=1"></h:link>
         <div>
+            <div class ="displayListProp">
             <h:form>
                 <p>
-                <h:dataTable value="#{personCtrl.allProp}" var="p"> 
-                    <h:column>
-                        <h:outputText value ="#{p.title}"/>
-                    </h:column>
-                   <h:column>
-                       <h:outputText value ="#{p.ruleInQ}"/>
-                    </h:column>
-                    <h:column>
-                        <h:outputText value ="#{p.change}"/>
-                    </h:column>
-                    <h:column>
-                        <h:outputText value ="#{p.reason}"/>
-                    </h:column>
-                </h:dataTable>
+                    <h:dataTable value="#{personCtrl.allProp}" var="p"> 
+                        <h:column>
+                            <f:facet name = "header">Proposal title</f:facet>
+                            <h:outputText value ="#{p.title}"/>
+                        </h:column>
+                       <h:column>
+                           <f:facet name = "header">Rule in question</f:facet>
+                           <h:outputText value ="#{p.ruleInQ}"/>
+                        </h:column>
+                        <h:column>
+                            <h:link value="View proposal" outcome="viewproposal.xhtml?id=#{p.id}"></h:link>
+                        </h:column>
+                        <h:column>
+                            <tr class="divLine"> </tr>
+                        </h:column>
+                    </h:dataTable>
                 </p>
-            </h:form>
-            <h:form>
-                <h:commandButton action="#{personCtrl.changeUi()}" value="update"></h:commandButton>       
-            </h:form>
+                </h:form>
+            </div>
         </div>
     </h:body>
 </html>

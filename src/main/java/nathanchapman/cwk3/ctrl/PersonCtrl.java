@@ -3,9 +3,11 @@ package nathanchapman.cwk3.ctrl;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import nathanchapman.cwk3.bus.PersonService;
 import nathanchapman.cwk3.bus.ProposalService;
 import nathanchapman.cwk3.bus.VoteService;
@@ -29,12 +31,12 @@ public class PersonCtrl implements Serializable {
     List<Proposal> allProp = new ArrayList<>();
 
     private Vote vote= new Vote();
-    private long propId = 2;
+    private long propId;
     private long personId;
     
     private List<Vote> allVotes = new ArrayList<>();
     private List<Vote> votes = new ArrayList<>();
-    private long pId = 2;
+    private long pId;
     private boolean propOwner = false;
     
     //ui vars
@@ -59,6 +61,7 @@ public class PersonCtrl implements Serializable {
         props.createNewProposal(prop, id);
         setProp(null);
         setProp(new Proposal());
+        updateAllProp();
         return"";
     }
     
@@ -73,14 +76,16 @@ public class PersonCtrl implements Serializable {
     }
     
     public String displayProposalById() {
-        setProp(props.getPropById(getPropId()));
+        Map<String, String>  res = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        setProp(props.getPropById(Long.valueOf(res.get("id"))));
+        setpId(Long.valueOf(res.get("id")));
         if (logedIn == false) {
             setHasVotedText("Please log into vote");
         }
         setHasVotedText("");
         return "";
-    }
-    
+    }  
+
     public void logIn() {
         String res = ps.logIn(getEmail(), getPassword());
         if (res.equals("Successfully logged in")) {
@@ -275,6 +280,7 @@ public class PersonCtrl implements Serializable {
     
     public PersonCtrl() {
     }
+    
     public List<Proposal> getAllProp() {
         if (allProp.isEmpty()) {
             allProp = props.getAllProposals();
@@ -284,6 +290,10 @@ public class PersonCtrl implements Serializable {
 
     public void setAllProp(List<Proposal> allProp) {
         this.allProp = allProp;
+    }
+    
+    public void updateAllProp() {
+        this.allProp = props.getAllProposals();
     }
     
     public long getId() {
