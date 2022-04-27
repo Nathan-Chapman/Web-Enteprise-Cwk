@@ -20,7 +20,7 @@ public class VoteService {
     
     public boolean userAlreadyVoted(Long personId, Long propId) {
         List<Vote> allVotesForProp = getVotesByProposalId(propId);
-        for (int i = 0 ;  i < allVotesForProp.size() ; i++) {
+        for (int i = 0 ;  i < allVotesForProp.size() ; i++) {          
             if (allVotesForProp.get(i).getPerson().getId() == personId ) {
                 return true;
             }
@@ -38,6 +38,7 @@ public class VoteService {
     public Vote changeVote(Vote vote, long propId, long personId) {
         vote.setProposal(propF.getProposalById(propId));
         vote.setPerson(pf.getPersonById(personId));
+        //vote.setVote(1);
         vf.remove(getVote(personId, propId));
         vf.create(vote);
         return vote;
