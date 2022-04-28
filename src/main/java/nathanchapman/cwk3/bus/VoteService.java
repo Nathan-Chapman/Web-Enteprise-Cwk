@@ -18,7 +18,7 @@ public class VoteService {
     @EJB
     private PersonFacade pf;
     
-    public boolean userAlreadyVoted(Long personId, Long propId) {
+    public boolean userAlreadyVoted(long personId, long propId) {
         List<Vote> allVotesForProp = getVotesByProposalId(propId);
         for (int i = 0 ;  i < allVotesForProp.size() ; i++) {          
             if (allVotesForProp.get(i).getPerson().getId() == personId ) {
@@ -38,7 +38,6 @@ public class VoteService {
     public Vote changeVote(Vote vote, long propId, long personId) {
         vote.setProposal(propF.getProposalById(propId));
         vote.setPerson(pf.getPersonById(personId));
-        //vote.setVote(1);
         vf.remove(getVote(personId, propId));
         vf.create(vote);
         return vote;
@@ -59,7 +58,7 @@ public class VoteService {
         return temp;
     }
     
-    public Vote getVote(long personId,long propId) {
+    public Vote getVote(long personId, long propId) {
         List<Vote> temp = getVotesByProposalId(propId);
         for (int i = 0 ;  i < temp.size() ; i++) {
             if (temp.get(i).getPerson().getId() == personId ) {

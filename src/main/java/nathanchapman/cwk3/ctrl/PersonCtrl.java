@@ -113,8 +113,7 @@ public class PersonCtrl implements Serializable {
     }
     
     public String doCreateVote() {
-        Map<String, String>  res = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-        
+        //Map<String, String>  res = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         //setProp(props.getPropById(Long.valueOf(res.get("id"))));
         //propId = 201;
         if (vs.userAlreadyVoted(personId, getpId())) {
