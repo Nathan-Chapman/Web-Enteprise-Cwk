@@ -58,7 +58,8 @@ public class PersonCtrl implements Serializable {
     }
     
     public String doCreateProposal() {
-        props.createNewProposal(prop, id);
+        //prop.setPerson(getLoggedInUser());
+        props.createNewProposal(prop, getLoggedInUser().getId());
         setProp(null);
         setProp(new Proposal());
         updateAllProp();
