@@ -17,24 +17,22 @@
             <h:link value="Create proposal" outcome="createproposal.xhtml"></h:link>
             </h:form>
             <h:form class ="headerRight">
-                <h:link value="#{personCtrl.updateSignInLink}" outcome="signin.xhtml"></h:link>
-                <h:link value="#{personCtrl.updateUserPage}" outcome="userpage.xhtml?id=#{personCtrl.id}"></h:link>
+                <!-- <h:link value="#{personCtrl.updateSignInLink}" outcome="signin.xhtml"></h:link>
+                <h:link value="#{personCtrl.updateUserPage}" outcome="userpage.xhtml?id=#{personCtrl.id}"></h:link> -->
             </h:form>
         </div>
-        <div class="main">
+        <div class="main"> 
             <h1 class="title"> Create proposal MAX OF 255 CHARACTERS PER FIELD</h1>
             <h:form class="createProposalArea">
                 <p class="pHeadCF">Proposal Title </p>
-                <h:inputTextarea class="buttonCF" value="#{personCtrl.prop.title}"/>
+                <h:inputTextarea class="buttonCF" value="#{proposalCtrl.prop.title}"/>
                 <p class="pHeadCF">Rule in consideration to be changed </p>
-                <h:inputTextarea class="buttonCF"  value="#{personCtrl.prop.ruleInQ}"/>
+                <h:inputTextarea class="buttonCF"  value="#{proposalCtrl.prop.ruleInQ}"/>
                 <p class="pHeadCF">Description of proposed change </p>
-                <h:inputTextarea class="buttonCF" value="#{personCtrl.prop.change}"/>
+                <h:inputTextarea class="buttonCF" value="#{proposalCtrl.prop.change}"/>
                 <p class="pHeadCF">Justification of change </p>
-                <h:inputTextarea class="buttonCF"  value="#{personCtrl.prop.reason}"/>
-<!--                <p class="pHeadCF">Person id for testing </p>
-                <h:inputText class="buttonCF" value="#{personCtrl.id}"/>-->
-                <h:commandButton class="buttonConfirm" value="Add" action="#{personCtrl.doCreateProposal()}"/>
+                <h:inputTextarea class="buttonCF"  value="#{proposalCtrl.prop.reason}"/>
+                <h:commandButton class="buttonConfirm" value="Add" action="#{proposalCtrl.createProposal()}"/>
             </h:form>
         </div>
     </h:body>

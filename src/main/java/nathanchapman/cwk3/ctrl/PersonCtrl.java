@@ -26,7 +26,6 @@ public class PersonCtrl implements Serializable {
     private String email;
     private String password; //Shouldnt store it in plain text
     
-    private Proposal prop = new Proposal();
     private long id;
     List<Proposal> allProp = new ArrayList<>();
 
@@ -56,36 +55,6 @@ public class PersonCtrl implements Serializable {
         ps.createNewPerson(p);
         return "";
     }
-    
-    public String doCreateProposal() {
-        //prop.setPerson(getLoggedInUser());
-        props.createNewProposal(prop, getLoggedInUser().getId());
-        setProp(null);
-        setProp(new Proposal());
-        updateAllProp();
-        return"";
-    }
-    
-    public String changeProposal() {
-        props.changeProposal(prop, id);
-        return"";
-    }
-    
-    public String deleteProposal() {
-        props.changeProposal(prop, id);
-        return"";
-    }
-    
-    public String displayProposalById() {
-        Map<String, String>  res = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-        setProp(props.getPropById(Long.valueOf(res.get("id"))));
-        setpId(Long.valueOf(res.get("id")));
-        if (logedIn == false) {
-            setHasVotedText("Please log into vote");
-        }
-        setHasVotedText("");
-        return "";
-    }  
 
     public void logIn() {
         String res = ps.logIn(getEmail(), getPassword());
@@ -299,20 +268,13 @@ public class PersonCtrl implements Serializable {
     public void updateAllProp() {
         this.allProp = props.getAllProposals();
     }
-    
+
     public long getId() {
         return id;
     }
 
     public void setId(long id) {
         this.id = id;
-    }
-    public Proposal getProp() {
-        return prop;
-    }
-    
-    public void setProp(Proposal prop) {
-        this.prop = prop;
     }
 
     public long getpId() {
@@ -330,6 +292,4 @@ public class PersonCtrl implements Serializable {
     public void setPropOwner(boolean propOwner) {
         this.propOwner = propOwner;
     }
-    
-    
 }

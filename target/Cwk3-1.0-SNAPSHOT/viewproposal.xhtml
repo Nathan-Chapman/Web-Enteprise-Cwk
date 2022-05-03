@@ -9,7 +9,7 @@
     </h:head>
     <f:metadata>
         <f:viewParam name="id" value="#{personCtrl.id}"/>
-        <f:event type="preRenderView" listener="#{personCtrl.displayProposalById()}" /> 
+        <f:event type="preRenderView" listener="#{proposalCtrl.displayProposalById()}" /> 
     </f:metadata>
     <h:body>
         <div class="header"> 
@@ -30,19 +30,19 @@
             <table class="card">
                  <p class="displayPropText">Proposal Title</p>
                  <hr class="divLine"></hr>
-                <h:outputText class="displayPropText2" value ="#{personCtrl.prop.title}" />
+                <h:outputText class="displayPropText2" value ="#{proposalCtrl.prop.title}" />
                  <hr class="divLine"></hr>
                 <p class="displayPropText">Rule in consideration to be amended</p>
                  <hr class="divLine"></hr>
-                <h:outputText class="displayPropText2" value ="#{personCtrl.prop.ruleInQ}" />
+                <h:outputText class="displayPropText2" value ="#{proposalCtrl.prop.ruleInQ}" />
                  <hr class="divLine"></hr>
                 <p class="displayPropText"> Change to the rule Title </p>
                 <hr class="divLine"></hr>
-                <h:outputText class="displayPropText2" value ="#{personCtrl.prop.change}" />
+                <h:outputText class="displayPropText2" value ="#{proposalCtrl.prop.change}" />
                  <hr class="divLine"></hr>  
                  <p class="displayPropText"> Reasoning behind changing the rule </p>
                  <hr class="divLine"></hr>  
-                <h:outputText class="displayPropText2" value ="#{personCtrl.prop.reason}" />
+                <h:outputText class="displayPropText2" value ="#{proposalCtrl.prop.reason}" />
                  <hr class="divLine"></hr>
             </table>  
         <h:form rendered="#{!personCtrl.logedIn}">   

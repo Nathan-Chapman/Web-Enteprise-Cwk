@@ -3,7 +3,7 @@ package nathanchapman.cwk3.ent;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,7 +23,7 @@ public class Proposal implements Serializable {
     private String change;
     private String reason;
     
-    @ManyToOne(targetEntity = Person.class)
+    @ManyToOne(targetEntity = Person.class, cascade = CascadeType.PERSIST)
     private Person person;
     
     @OneToMany(targetEntity = Vote.class)
