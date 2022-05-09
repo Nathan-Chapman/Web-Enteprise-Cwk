@@ -58,18 +58,18 @@ public class PersonService {
         return temp;
     }
 
-    public String logIn(String email, String password) {
+    public Person logIn(String email, String password) {
         Person temp;
         List<Person> allPerson = pf.findAll();
         for (int i = 0 ; i < allPerson.size() ; i++) {
             if (allPerson.get(i).getEmail().equals(email)) {
                 temp = allPerson.get(i);
                 if (temp.getPassword().equals(password)) {
-                    return "Successfully logged in";
+                    return temp;
                 }
             }
         }
-        return "Email or password incorrect";
+        return null;
     }
     
     public Person getUserByEmail(String email) {

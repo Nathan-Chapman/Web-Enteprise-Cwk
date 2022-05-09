@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package nathanchapman.cwk3.ent;
 
 import java.io.Serializable;
@@ -12,10 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-/**
- *
- * @author natha
- */
 @Entity
 public class Vote implements Serializable {
 
@@ -23,19 +14,21 @@ public class Vote implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Integer vote;
+
+    public String getVoteValue() {
+        return voteValue;
+    }
+
+    public void setVoteValue(String voteValue) {
+        this.voteValue = voteValue;
+    }
+    private String voteValue;
+    
     @ManyToOne(targetEntity = Proposal.class)
     private Proposal proposal;
+    
     @ManyToOne(targetEntity = Person.class)
     private Person person;
-
-    public Integer getVote() {
-        return vote;
-    }
-
-    public void setVote(Integer vote) {
-        this.vote = vote;
-    }
 
     public Proposal getProposal() {
         return proposal;

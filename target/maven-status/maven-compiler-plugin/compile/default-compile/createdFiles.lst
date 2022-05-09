@@ -3,6 +3,7 @@ nathanchapman\cwk3\ent\Proposal.class
 nathanchapman\cwk3\ctrl\ProrposalCtrl.class
 nathanchapman\cwk3\pers\VoteFacade.class
 nathanchapman\cwk3\resources\JavaEE8Resource.class
+nathanchapman\cwk3\ctrl\VoteCtrl.class
 nathanchapman\cwk3\bus\VoteService.class
 nathanchapman\cwk3\pers\PersonFacade.class
 nathanchapman\cwk3\ent\Vote.class

@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import nathanchapman.cwk3.ent.Person;
+import nathanchapman.cwk3.ent.Proposal;
 import nathanchapman.cwk3.ent.Vote;
 import nathanchapman.cwk3.pers.PersonFacade;
 import nathanchapman.cwk3.pers.ProposalFacade;
@@ -14,7 +16,7 @@ public class VoteService {
     @EJB 
     private VoteFacade vf;
     @EJB
-    private ProposalFacade propF;
+    private ProposalFacade proposalF;
     @EJB
     private PersonFacade pf;
     
@@ -28,17 +30,17 @@ public class VoteService {
          return false;
     }
     
-    public Vote createNewVote(Vote vote, long propId, long personId) {
-        vote.setProposal(propF.getProposalById(propId));
-        vote.setPerson(pf.getPersonById(personId));
+    public Vote createVote(Vote vote, Person person, Proposal prop) {
+        vote.setProposal(proposalF.getProposalById(151L));
+        vote.setPerson(person);
         vf.create(vote);
         return vote;
     }
     
-    public Vote changeVote(Vote vote, long propId, long personId) {
-        vote.setProposal(propF.getProposalById(propId));
-        vote.setPerson(pf.getPersonById(personId));
-        vf.remove(getVote(personId, propId));
+    public Vote changeVote(Vote vote, Proposal prop, Person person) {
+        vote.setProposal(prop);
+        vote.setPerson(pf.getPersonById(person.getId()));
+        vf.remove(getVote(person.getId(), prop.getId()));
         vf.create(vote);
         return vote;
     }

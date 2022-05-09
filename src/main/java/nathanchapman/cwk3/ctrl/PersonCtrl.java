@@ -3,11 +3,9 @@ package nathanchapman.cwk3.ctrl;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.context.FacesContext;
 import nathanchapman.cwk3.bus.PersonService;
 import nathanchapman.cwk3.bus.ProposalService;
 import nathanchapman.cwk3.bus.VoteService;
@@ -25,30 +23,30 @@ public class PersonCtrl implements Serializable {
     private String loggedInResult;
     private String email;
     private String password; //Shouldnt store it in plain text
-    
+
     private long id;
     List<Proposal> allProp = new ArrayList<>();
 
-    private Vote vote= new Vote();
+    private Vote vote = new Vote();
     private long propId;
     private long personId;
-    
+
     private List<Vote> allVotes = new ArrayList<>();
     private List<Vote> votes = new ArrayList<>();
     private long pId;
     private boolean propOwner = false;
-    
+
     //ui vars
     private String updateSignInLink = "SignIn";
-    private String updateUserPage ="";
-    private String home ="";
-    private String hasVotedText ="Please log into vote";
-    
+    private String updateUserPage = "";
+    private String home = "";
+    private String hasVotedText = "Please log into vote";
+
     @EJB
     private PersonService ps;
     @EJB
     private ProposalService props;
-     @EJB
+    @EJB
     private VoteService vs;
 
     public String doCreatePerson() {
@@ -57,22 +55,22 @@ public class PersonCtrl implements Serializable {
     }
 
     public void logIn() {
-        String res = ps.logIn(getEmail(), getPassword());
-        if (res.equals("Successfully logged in")) {
-            setLoggedInResult(res);
+        Person res  = ps.logIn(getEmail(), getPassword());
+        if (res != null) {
             setLogedIn(true);
             setLoggedInUser(ps.getUserByEmail(getEmail()));
             setHome("Click for home page");
-            setLoggedInResult(res);
+            setP(res);
+            setLoggedInResult("SUCCES LOGIN");
             setPersonId(getLoggedInUser().getId());
             updateHeaderLogIn();
             setHasVotedText("");
         } else {
             setLogedIn(false);
-            setLoggedInResult(res);
+            setLoggedInResult("FAILED LOGIN");
         }
     }
-    
+
     public void logOut() { // Need to update top right header when ran
         setLogedIn(false);
         setLoggedInUser(p);
@@ -80,42 +78,41 @@ public class PersonCtrl implements Serializable {
         setPersonId(0);
         setHasVotedText("Please log into vote");
     }
-    
-    public String doCreateVote() {
-        //Map<String, String>  res = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-        //setProp(props.getPropById(Long.valueOf(res.get("id"))));
-        //propId = 201;
-        if (vs.userAlreadyVoted(personId, getpId())) {
-            changeVote();
-             return"";
-        }
-         vs.createNewVote(vote, getpId(), personId);
-         setVote(null);
-         setVote(new Vote());
-         return "";
-}
-    
-    public String changeVote() {
-        vs.changeVote(vote, getpId(), personId);
-         setVote(null);
-         setVote(new Vote());
-        return"";
+
+//    public String doCreateVote() {
+//        //Map<String, String>  res = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+//        //setProp(props.getPropById(Long.valueOf(res.get("id"))));
+//        //propId = 201;
+//        if (vs.userAlreadyVoted(personId, getpId())) {
+//            changeVote();
+//            return "";
+//        }
+//        vs.createNewVote(vote, getpId(), personId);
+//        setVote(null);
+//        setVote(new Vote());
+//        return "";
+//    }
+
+//    public String changeVote() {
+//        vs.changeVote(vote, getpId(), p);
+//        setVote(null);
+//        setVote(new Vote());
+//        return "";
+//    }
+
+    public String updateHeaderLogIn() {
+        setUpdateSignInLink("");
+        setUpdateUserPage("User page here // log out on this page");
+        return "";
     }
 
-        public String updateHeaderLogIn() {
-         setUpdateSignInLink("");
-         setUpdateUserPage("User page here // log out on this page");
-         return "";
-     }
-         
     public String updateHeaderLogOut() {
-         setUpdateSignInLink("SignIn");
-         setUpdateUserPage("");
-         return "";
-     }
-    
-    //GETTER AND SETTERS
+        setUpdateSignInLink("SignIn");
+        setUpdateUserPage("");
+        return "";
+    }
 
+    //GETTER AND SETTERS
     public String getHasVotedText() {
         return hasVotedText;
     }
@@ -123,7 +120,7 @@ public class PersonCtrl implements Serializable {
     public void setHasVotedText(String hasVotedText) {
         this.hasVotedText = hasVotedText;
     }
-    
+
     public String getHome() {
         return home;
     }
@@ -131,7 +128,7 @@ public class PersonCtrl implements Serializable {
     public void setHome(String home) {
         this.home = home;
     }
-    
+
     public String getUpdateSignInLink() {
         return updateSignInLink;
     }
@@ -147,15 +144,15 @@ public class PersonCtrl implements Serializable {
     public void setUpdateUserPage(String updateUserPage) {
         this.updateUserPage = updateUserPage;
     }
-    
+
     public String getLoggedInResult() {
         return loggedInResult;
     }
 
     public void setLoggedInResult(String loggedInResult) {
         this.loggedInResult = loggedInResult;
-    }  
-    
+    }
+
     public Person getLoggedInUser() {
         return loggedInUser;
     }
@@ -171,7 +168,7 @@ public class PersonCtrl implements Serializable {
     public void setLogedIn(boolean logedIn) {
         this.logedIn = logedIn;
     }
-    
+
     public List<Vote> getVotes() {
         if (votes.isEmpty()) {
             votes = vs.getVotesByProposalId(pId);
@@ -179,7 +176,7 @@ public class PersonCtrl implements Serializable {
         votes = vs.getVotesByProposalId(pId);
         return votes;
     }
-    
+
     public void setVotes(List<Vote> votes) {
         this.votes = votes;
     }
@@ -191,7 +188,7 @@ public class PersonCtrl implements Serializable {
     public void setqId(long pId) {
         this.pId = pId;
     }
-    
+
     public Vote getVote() {
         return vote;
     }
@@ -218,7 +215,7 @@ public class PersonCtrl implements Serializable {
 
     public List getAllVotes() {
         if (allVotes.isEmpty()) {
-            allVotes = vs.getAllVotes();       
+            allVotes = vs.getAllVotes();
         }
         return allVotes;
     }
@@ -226,7 +223,7 @@ public class PersonCtrl implements Serializable {
     public void setAllVotes(List<Vote> allVotes) {
         this.allVotes = allVotes;
     }
-    
+
     public String getEmail() {
         return email;
     }
@@ -250,10 +247,10 @@ public class PersonCtrl implements Serializable {
     public void setP(Person p) {
         this.p = p;
     }
-    
+
     public PersonCtrl() {
     }
-    
+
     public List<Proposal> getAllProp() {
         if (allProp.isEmpty()) {
             allProp = props.getAllProposals();
@@ -264,7 +261,7 @@ public class PersonCtrl implements Serializable {
     public void setAllProp(List<Proposal> allProp) {
         this.allProp = allProp;
     }
-    
+
     public void updateAllProp() {
         this.allProp = props.getAllProposals();
     }

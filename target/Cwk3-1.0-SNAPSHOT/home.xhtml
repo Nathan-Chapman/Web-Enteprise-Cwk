@@ -15,7 +15,7 @@
                     <h2> search</h2>
                     <h2>Search box</h2>
                 </div>
-            <h:link value="Create proposal" outcome="createproposal.xhtml"></h:link>
+                <h:link value="Create proposal" outcome="createproposal.xhtml"></h:link>
             </h:form>
             <h:form class ="headerRight">
                 <h:link value="#{personCtrl.updateSignInLink}" outcome="signin.xhtml"></h:link>
@@ -24,25 +24,25 @@
         </div>
         <div>
             <div class ="displayListProp">
-            <h:form>
-                <p>
-                    <h:dataTable value="#{personCtrl.allProp}" var="p"> 
-                        <h:column>
-                            <f:facet name = "header">Proposal title</f:facet>
-                            <h:outputText value ="#{p.title}"/>
-                        </h:column>
-                       <h:column>
-                           <f:facet name = "header">Rule in question</f:facet>
-                           <h:outputText value ="#{p.ruleInQ}"/>
-                        </h:column>
-                        <h:column>
-                            <h:link value="View proposal" outcome="viewproposal.xhtml?id=#{p.id}"></h:link>
-                        </h:column>
-                        <h:column>
-                            <tr class="divLine"> </tr>
-                        </h:column>
-                    </h:dataTable>
-                </p>
+                <h:form>
+                    <p>
+                        <h:dataTable value="#{personCtrl.allProp}" var="p"> 
+                            <h:column>
+                                <f:facet name = "header">Proposal title</f:facet>
+                                <h:outputText value ="#{p.title}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name = "header">Rule in question</f:facet>
+                                <h:outputText value ="#{p.ruleInQ}"/>
+                            </h:column>
+                            <h:column>
+                                <h:link value="View proposal" outcome="viewproposal.xhtml?id=#{p.id}"></h:link> <!-- Change to command link -->
+                            </h:column>
+                            <h:column>
+                                <tr class="divLine"> </tr>
+                            </h:column>
+                        </h:dataTable>
+                    </p>
                 </h:form>
             </div>
         </div>
