@@ -35,51 +35,55 @@ public class PersonService {
         pf.create(p);
         return p;
     }
-    
+
     public List<Proposal> getProposalByUser(long id) {
         List<Proposal> allProposal = propf.findAll();
         List<Proposal> temp = new ArrayList<>();
-        for (int i=0 ; i < allProposal.size() ; i++) {
-            if (allProposal.get(i).getPerson().getId() == id) {            
-               temp.add(allProposal.get(i));
-            }     
-        }
-        return temp;
-    }
-        
-        public List<Vote> getVotesByPersonId(long id) {
-        List<Vote> allVotes = vf.findAll();
-        List<Vote> temp = new ArrayList<>();
-        for (int i=0 ; i < allVotes.size() ; i++) {
-            if (allVotes.get(i).getPerson().getId() == id) {            
-               temp.add(allVotes.get(i));
-            }     
+        for (int i = 0; i < allProposal.size(); i++) {
+            if (allProposal.get(i).getPerson().getId() == id) {
+                temp.add(allProposal.get(i));
+            }
         }
         return temp;
     }
 
-    public Person logIn(String email, String password) {
+    public List<Vote> getVotesByPersonId(long id) {
+        List<Vote> allVotes = vf.findAll();
+        List<Vote> temp = new ArrayList<>();
+        for (int i = 0; i < allVotes.size(); i++) {
+            if (allVotes.get(i).getPerson().getId() == id) {
+                temp.add(allVotes.get(i));
+            }
+        }
+        return temp;
+    }
+
+    public Person logIn(String email, String password) throws BusinessException {
         Person temp;
         List<Person> allPerson = pf.findAll();
-        for (int i = 0 ; i < allPerson.size() ; i++) {
+        for (int i = 0; i < allPerson.size(); i++) {
             if (allPerson.get(i).getEmail().equals(email)) {
                 temp = allPerson.get(i);
                 if (temp.getPassword().equals(password)) {
                     return temp;
+                } else {
+                    throw new BusinessException("Username or password incorrect");
                 }
+            } else {
+                throw new BusinessException("Username or password incorrect");
             }
         }
         return null;
     }
-    
+
     public Person getUserByEmail(String email) {
         Person temp;
         List<Person> allPerson = pf.findAll();
-        for (int i = 0 ; i < allPerson.size() ; i++) {
+        for (int i = 0; i < allPerson.size(); i++) {
             if (allPerson.get(i).getEmail().equals(email)) {
                 return allPerson.get(i);
-                }
             }
+        }
         return null;
     }
 }

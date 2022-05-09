@@ -6,6 +6,9 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import nathanchapman.cwk3.bus.BusinessException;
 import nathanchapman.cwk3.bus.PersonService;
 import nathanchapman.cwk3.bus.ProposalService;
 import nathanchapman.cwk3.bus.VoteService;
@@ -55,19 +58,22 @@ public class PersonCtrl implements Serializable {
     }
 
     public void logIn() {
-        Person res  = ps.logIn(getEmail(), getPassword());
-        if (res != null) {
-            setLogedIn(true);
-            setLoggedInUser(ps.getUserByEmail(getEmail()));
-            setHome("Click for home page");
-            setP(res);
-            setLoggedInResult("SUCCES LOGIN");
-            setPersonId(getLoggedInUser().getId());
-            updateHeaderLogIn();
-            setHasVotedText("");
-        } else {
+        try {
+            Person res = ps.logIn(getEmail(), getPassword());
+            if (res != null) {
+                setLogedIn(true);
+                setLoggedInUser(ps.getUserByEmail(getEmail()));
+                setHome("Click for home page");
+                setP(res);
+                setLoggedInResult("SUCCES LOGIN");
+                setPersonId(getLoggedInUser().getId());
+                updateHeaderLogIn();
+                setHasVotedText("");
+            }
+        } catch (BusinessException e) {
+            FacesMessage msg = new FacesMessage(e.getMessage());
+            FacesContext.getCurrentInstance().addMessage("", msg);
             setLogedIn(false);
-            setLoggedInResult("FAILED LOGIN");
         }
     }
 
@@ -92,14 +98,12 @@ public class PersonCtrl implements Serializable {
 //        setVote(new Vote());
 //        return "";
 //    }
-
 //    public String changeVote() {
 //        vs.changeVote(vote, getpId(), p);
 //        setVote(null);
 //        setVote(new Vote());
 //        return "";
 //    }
-
     public String updateHeaderLogIn() {
         setUpdateSignInLink("");
         setUpdateUserPage("User page here // log out on this page");
