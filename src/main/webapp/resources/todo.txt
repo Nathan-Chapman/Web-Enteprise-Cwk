@@ -1,0 +1,7 @@
+-Vote
+    -Save vote value
+    -Display vote if user has voted
+    -Change vote
+    -Chnge it to a radio or a drop down menu
+-Vote Result
+    Show votes for and against and abstain
