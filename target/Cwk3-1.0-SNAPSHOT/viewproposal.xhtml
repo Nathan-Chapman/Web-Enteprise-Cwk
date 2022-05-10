@@ -7,9 +7,6 @@
         <title>View Proposal</title>
         <h:outputStylesheet  library ="css" name="main.css" />
     </h:head>
-    <f:metadata>
-        <f:event type="preRenderView" listener="#{proposalCtrl.displayProposalById()}" /> 
-    </f:metadata>
     <h:body>
         <div class="header"> 
             <h:form class="headerLeft">
@@ -53,7 +50,9 @@
             <h:form rendered="#{personCtrl.logedIn}">   
                 <p>If you have already voted voting again will change your vote</p>
                 <h:inputText value="#{voteCtrl.vote.voteValue}"/>
-                <h:commandButton value="button" action="#{voteCtrl.userVote()}"/>
+                <f:ajax>
+                    <h:commandButton value="button" action="#{voteCtrl.userVote()}"/>
+                </f:ajax>
             </h:form>
         </div>
     </h:body>

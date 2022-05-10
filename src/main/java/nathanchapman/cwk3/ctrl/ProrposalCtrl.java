@@ -1,5 +1,6 @@
 package nathanchapman.cwk3.ctrl;
 
+import java.awt.event.ActionEvent;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,11 +47,24 @@ public class ProrposalCtrl implements Serializable { //rename
         return "";
     }
 
-    public String displayProposalById() {
-            //Map<String, String> res = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-            //setProp(props.getPropById(Long.valueOf(res.get("id"))));
-            setProp(props.getPropById(151L));
-            return "";
+    public String viewProp() {
+        displayProposalById(propId);
+        return "viewproposal.xhtml";
+    }
+    
+    String action;
+    
+    public void idListener(ActionEvent event) {
+        action = "";
+    }
+
+    public String displayProposalById(Long id) {
+        //Map<String, String> res = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        //setProp(props.getPropById(Long.valueOf(res.get("id"))));
+        setProp(props.getPropById(id));
+        //setProp(props.getPropById(Long.valueOfa)));
+        
+        return "";
     }
 
 //    public String userVote() {
@@ -59,7 +73,6 @@ public class ProrposalCtrl implements Serializable { //rename
 //            setVote(new Vote());
 //            return "";
 //    }
-
     public ProrposalCtrl() {
     }
 
@@ -78,7 +91,6 @@ public class ProrposalCtrl implements Serializable { //rename
 //    public void setVote(Vote vote) {
 //        this.vote = vote;
 //    }
-
     public List<Proposal> getAllProp() {
         if (allProp.isEmpty()) {
             allProp = props.getAllProposals();

@@ -36,9 +36,10 @@
                                 <h:outputText value ="#{p.ruleInQ}"/>
                             </h:column>
                             <h:column>
-                                <h:link value="View proposal" outcome="viewproposal.xhtml">
-                                    <!--<f:param name ="propId" value="#{p.id}"/>-->
-                                </h:link>
+                                <h:commandButton value="ViewProp" action="#{proposalCtrl.viewProp()}">
+<!--                                        <f:attribute name="id" value="#{p.id}"/>-->
+                                    <f:setPropertyActionListener target="#{proposalCtrl.propId}" value="#{p.id}" />
+                                </h:commandButton> 
                             </h:column>
                             <h:column>
                                 <tr class="divLine"> </tr>

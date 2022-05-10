@@ -46,15 +46,14 @@ public class PersonCtrl implements Serializable {
     @EJB
     private VoteService vs;
 
-    public String doCreatePerson() {
+    public String doCreatePerson() { // add error handling
         ps.createNewPerson(p);
         return "signin.xhtml";
     }
 
-    public String logIn() {
+    public String logIn() { //eror handling
         try {
             Person res = ps.logIn(p.getEmail(), p.getPassword());
-            //setLoggedInResult(res);
             if (res != null) {
                 setLogedIn(true);
                 setHome("Click for home page");
