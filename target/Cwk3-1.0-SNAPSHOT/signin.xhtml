@@ -9,16 +9,16 @@
     <h:body>
         <div class="header"> 
             <h:form class="headerLeft">
-                <h:link value="Home" outcome="home.xhtml"></h:link>
+                <h:link value="Home" outcome="home.xhtml"/>
                 <div class="headerSearch">
                     <h2> search</h2>
                     <h2>Search box</h2>
                 </div>
-            <h:link value="Create proposal" outcome="createproposal.xhtml"></h:link>
+            <h:link value="Create proposal" outcome="createproposal.xhtml"/>
             </h:form>
             <h:form class ="headerRight">
-                <h:link value="#{personCtrl.updateSignInLink}" outcome="signin.xhtml"></h:link>
-                <h:link value="#{personCtrl.updateUserPage}" outcome="userpage.xhtml?id=#{personCtrl.p.id}"></h:link>
+                <h:link value="#{personCtrl.updateSignInLink}" outcome="signin.xhtml"/>
+                <h:link value="#{personCtrl.updateUserPage}" outcome="userpage.xhtml?id=#{personCtrl.p.id}"/>
             </h:form>
         </div>
         <div class="main">
@@ -32,7 +32,7 @@
             </h:form>
             <h:form>
                 <h:outputText value="#{personCtrl.loggedInResult}"/>
-                <h:link value="#{personCtrl.home}" outcome="home.xhtml"></h:link>
+                <h:link value="#{personCtrl.home}" outcome="home.xhtml"/>
             </h:form>
         </div>
     </h:body>

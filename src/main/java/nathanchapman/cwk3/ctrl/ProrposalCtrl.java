@@ -1,6 +1,5 @@
 package nathanchapman.cwk3.ctrl;
 
-import java.awt.event.ActionEvent;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +14,7 @@ import nathanchapman.cwk3.ent.Vote;
 
 @Named(value = "proposalCtrl")
 @RequestScoped
-public class ProrposalCtrl implements Serializable { //rename
+public class ProrposalCtrl implements Serializable {
 
     @EJB
     private ProposalService props;
@@ -25,10 +24,11 @@ public class ProrposalCtrl implements Serializable { //rename
     PersonCtrl personCtrl;
 
     //private Vote vote = new Vote();
-    private Proposal prop = new Proposal(); //Proposal to get uiser input
+    private Proposal prop = new Proposal();
     private Vote vote = new Vote();
     private List<Proposal> allProp = new ArrayList<>();
     private Long propId;
+    private String testString = "aa";
 
     public String createProposal() {
         props.createProposal(prop, personCtrl.getP());
@@ -49,24 +49,17 @@ public class ProrposalCtrl implements Serializable { //rename
 
     public String viewProp() {
         setProp(props.getPropById(propId));
+        personCtrl.setpId(propId);
         return "viewproposal.xhtml";
     }
 
-    String action;
-
-//    public void idListener(ActionEvent event) {
-//        action = "";
-//    }
-
-//    public String displayProposalById(Long id) {
-//        return "";
-//    }
-
-    public void userVote() {
-        setProp(props.getPropById(151L));
+    public String userVote() {
+        setProp(props.getPropById(personCtrl.getpId()));
+        setTestString(vote.getVoteValue());
         votes.createVote(vote, personCtrl.getP(), prop);
         setVote(null);
         setVote(new Vote());
+        return "";
     }
 
     public ProrposalCtrl() {
@@ -109,6 +102,14 @@ public class ProrposalCtrl implements Serializable { //rename
 
     public void setVote(Vote vote) {
         this.vote = vote;
+    }
+
+    public String getTestString() {
+        return testString;
+    }
+
+    public void setTestString(String testString) {
+        this.testString = testString;
     }
 
 }
