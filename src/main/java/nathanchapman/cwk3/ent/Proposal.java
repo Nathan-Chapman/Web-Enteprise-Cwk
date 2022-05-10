@@ -21,10 +21,10 @@ public class Proposal implements Serializable {
     private String ruleInQ;
     private String change;
     private String reason;
-    
+
     @ManyToOne(targetEntity = Person.class)
     private Person person;
-    
+
     @OneToMany(targetEntity = Vote.class)
     private List<Vote> votes = new ArrayList<>();
 
@@ -43,7 +43,7 @@ public class Proposal implements Serializable {
     public void setPerson(Person person) {
         this.person = person;
     }
-    
+
     public String getTitle() {
         return title;
     }
@@ -108,5 +108,5 @@ public class Proposal implements Serializable {
     public String toString() {
         return "nathanchapman.cwk3.ent.Proposal[ id=" + id + " ]";
     }
-    
+
 }

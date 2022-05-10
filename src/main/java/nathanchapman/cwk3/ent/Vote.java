@@ -23,10 +23,10 @@ public class Vote implements Serializable {
         this.voteValue = voteValue;
     }
     private String voteValue;
-    
+
     @ManyToOne(targetEntity = Proposal.class)
     private Proposal proposal;
-    
+
     @ManyToOne(targetEntity = Person.class)
     private Person person;
 
@@ -78,5 +78,5 @@ public class Vote implements Serializable {
     public String toString() {
         return "nathanchapman.cwk3.ent.Vote[ id=" + id + " ]";
     }
-    
+
 }

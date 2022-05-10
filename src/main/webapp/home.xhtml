@@ -36,7 +36,9 @@
                                 <h:outputText value ="#{p.ruleInQ}"/>
                             </h:column>
                             <h:column>
-                                <h:link value="View proposal" outcome="viewproposal.xhtml?id=#{p.id}"></h:link> <!-- Change to command link -->
+                                <h:link value="View proposal" outcome="viewproposal.xhtml">
+                                    <!--<f:param name ="propId" value="#{p.id}"/>-->
+                                </h:link>
                             </h:column>
                             <h:column>
                                 <tr class="divLine"> </tr>

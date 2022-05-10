@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package nathanchapman.cwk3.bus;
 
 import java.util.ArrayList;
@@ -16,10 +11,6 @@ import nathanchapman.cwk3.pers.PersonFacade;
 import nathanchapman.cwk3.pers.ProposalFacade;
 import nathanchapman.cwk3.pers.VoteFacade;
 
-/**
- *
- * @author natha
- */
 @Stateless
 public class PersonService {
 
@@ -31,7 +22,7 @@ public class PersonService {
     private VoteFacade vf;
 
     public Person createNewPerson(Person p) {
-        p.setAdminStatus(false);
+        p.setAdminStatus(false); //TODO move to entity file
         pf.create(p);
         return p;
     }
@@ -58,22 +49,20 @@ public class PersonService {
         return temp;
     }
 
-    public Person logIn(String email, String password) throws BusinessException {
-        Person temp;
+    public Person logIn(String email, String password) throws BusinessException {  //Very inefficent and cases fatal eroror if user is not found
         List<Person> allPerson = pf.findAll();
         for (int i = 0; i < allPerson.size(); i++) {
             if (allPerson.get(i).getEmail().equals(email)) {
-                temp = allPerson.get(i);
-                if (temp.getPassword().equals(password)) {
-                    return temp;
+                if (allPerson.get(i).getPassword().equals(password)) {
+                    return allPerson.get(i);
                 } else {
-                    throw new BusinessException("Username or password incorrect");
+                    //throw new BusinessException("Incorrect username or password");
                 }
             } else {
-                throw new BusinessException("Username or password incorrect");
+                //throw new BusinessException("Incorrect username or password");
             }
         }
-        return null;
+        throw new BusinessException("Incorrect username or password");
     }
 
     public Person getUserByEmail(String email) {

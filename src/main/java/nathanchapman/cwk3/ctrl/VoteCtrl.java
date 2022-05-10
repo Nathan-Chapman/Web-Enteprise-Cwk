@@ -23,22 +23,20 @@ public class VoteCtrl implements Serializable {
     private VoteService vs;
     @EJB
     private ProposalService props; 
-//    @Inject
-//    ProrposalCtrl proposalCtrl;
     @Inject
     PersonCtrl personCtrl;
 
-//    public String userVote() {
-//        Map<String, String> res = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-//        Proposal prop = props.getPropById(Long.valueOf(res.get("id")));
-//        //vote.setVoteValue("a");
-//        //vs.createVote(vote, personCtrl.getP());
-//        //Proposal prop = proposalCtrl.getProp();
-//        vs.createVote(vote, personCtrl.getP(), prop);
-//        setVote(null);
-//        setVote(new Vote());
-//        return "";
-//    }
+    public String userVote() {
+        //Map<String, String> res = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        //Proposal prop = props.getPropById(Long.valueOf(res.get("id")));
+        //vote.setVoteValue("a");
+        //vs.createVote(vote, personCtrl.getP());
+        Proposal prop = props.getPropById(151L);
+        vs.createVote(vote, personCtrl.getP(), prop);
+        setVote(null);
+        setVote(new Vote());
+        return "";
+    }
 
 //    public String changeVote() {
 //        vs.changeVote(vote, getProposal(), personCtrl.getP());

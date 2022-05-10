@@ -52,8 +52,8 @@
             </h:form>
             <h:form rendered="#{personCtrl.logedIn}">   
                 <p>If you have already voted voting again will change your vote</p>
-                <h:inputText value="#{proposalCtrl.vote.voteValue}"/>
-                <h:commandButton value="button" action="#{proposalCtrl.userVote()}"/>
+                <h:inputText value="#{voteCtrl.vote.voteValue}"/>
+                <h:commandButton value="button" action="#{voteCtrl.userVote()}"/>
             </h:form>
         </div>
     </h:body>

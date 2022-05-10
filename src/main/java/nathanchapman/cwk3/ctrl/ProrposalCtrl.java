@@ -7,13 +7,11 @@ import java.util.Map;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import nathanchapman.cwk3.bus.ProposalService;
 import nathanchapman.cwk3.bus.VoteService;
 import nathanchapman.cwk3.ent.Proposal;
-import nathanchapman.cwk3.ent.Vote;
 
 @Named(value = "proposalCtrl")
 @RequestScoped
@@ -26,7 +24,7 @@ public class ProrposalCtrl implements Serializable { //rename
     @Inject
     PersonCtrl personCtrl;
 
-    private Vote vote = new Vote();
+    //private Vote vote = new Vote();
     private Proposal prop = new Proposal(); //Proposal to get uiser input
     private List<Proposal> allProp = new ArrayList<>();
     private Long propId;
@@ -49,17 +47,18 @@ public class ProrposalCtrl implements Serializable { //rename
     }
 
     public String displayProposalById() {
-            Map<String, String> res = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-                setProp(props.getPropById(Long.valueOf(res.get("id"))));
+            //Map<String, String> res = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+            //setProp(props.getPropById(Long.valueOf(res.get("id"))));
+            setProp(props.getPropById(151L));
             return "";
     }
 
-    public String userVote() {
-            votes.createVote(vote, personCtrl.getP(), prop);
-            setVote(null);
-            setVote(new Vote());
-            return "";
-    }
+//    public String userVote() {
+//            votes.createVote(vote, personCtrl.getP(), prop);
+//            setVote(null);
+//            setVote(new Vote());
+//            return "";
+//    }
 
     public ProrposalCtrl() {
     }
@@ -72,13 +71,13 @@ public class ProrposalCtrl implements Serializable { //rename
         this.propId = propId;
     }
 
-    public Vote getVote() {
-        return vote;
-    }
-
-    public void setVote(Vote vote) {
-        this.vote = vote;
-    }
+//    public Vote getVote() {
+//        return vote;
+//    }
+//
+//    public void setVote(Vote vote) {
+//        this.vote = vote;
+//    }
 
     public List<Proposal> getAllProp() {
         if (allProp.isEmpty()) {

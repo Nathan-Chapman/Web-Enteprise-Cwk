@@ -32,7 +32,6 @@ public class PersonCtrl implements Serializable {
 
     private Vote vote = new Vote();
     private long propId;
-    private long personId;
 
     private List<Vote> allVotes = new ArrayList<>();
     private List<Vote> votes = new ArrayList<>();
@@ -59,14 +58,14 @@ public class PersonCtrl implements Serializable {
 
     public void logIn() {
         try {
-            Person res = ps.logIn(getEmail(), getPassword());
+            Person res = ps.logIn(p.getEmail(), p.getPassword());
+            //setLoggedInResult(res);
             if (res != null) {
                 setLogedIn(true);
-                setLoggedInUser(ps.getUserByEmail(getEmail()));
+                setLoggedInUser(res);
                 setHome("Click for home page");
                 setP(res);
-                setLoggedInResult("SUCCES LOGIN");
-                setPersonId(getLoggedInUser().getId());
+                setLoggedInResult("LOGGED IN");
                 updateHeaderLogIn();
                 setHasVotedText("");
             }
@@ -81,7 +80,6 @@ public class PersonCtrl implements Serializable {
         setLogedIn(false);
         setLoggedInUser(p);
         updateHeaderLogOut();
-        setPersonId(0);
         setHasVotedText("Please log into vote");
     }
 
@@ -207,14 +205,6 @@ public class PersonCtrl implements Serializable {
 
     public void setPropId(long propId) {
         this.propId = propId;
-    }
-
-    public long getPersonId() {
-        return personId;
-    }
-
-    public void setPersonId(long personId) {
-        this.personId = personId;
     }
 
     public List getAllVotes() {

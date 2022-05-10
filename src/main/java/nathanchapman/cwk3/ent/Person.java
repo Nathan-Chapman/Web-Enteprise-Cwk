@@ -23,10 +23,10 @@ public class Person implements Serializable {
     private boolean adminStatus;
     private String nationalFederation;
     private String userRole;
-    
+
     @OneToMany(targetEntity = Proposal.class)
     private List<Proposal> proposals = new ArrayList<>();
-    
+
     @OneToMany(targetEntity = Vote.class)
     private List<Vote> votes = new ArrayList<>();
 
@@ -37,7 +37,7 @@ public class Person implements Serializable {
     public void setVotes(List<Vote> votes) {
         this.votes = votes;
     }
-    
+
     public List<Proposal> getProposals() {
         return proposals;
     }
@@ -65,7 +65,7 @@ public class Person implements Serializable {
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-    
+
     public String getLastName() {
         return lastName;
     }
@@ -81,7 +81,7 @@ public class Person implements Serializable {
     public void setAdminStatus(boolean adminStatus) {
         this.adminStatus = adminStatus;
     }
-    
+
     public String getNationalFederation() {
         return nationalFederation;
     }
@@ -105,11 +105,11 @@ public class Person implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    
+
     public String getFirstName() {
         return firstName;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -133,5 +133,5 @@ public class Person implements Serializable {
     @Override
     public String toString() {
         return "nathanchapman.cwk3.ent.Person[ id=" + id + " ]";
-    } 
+    }
 }
