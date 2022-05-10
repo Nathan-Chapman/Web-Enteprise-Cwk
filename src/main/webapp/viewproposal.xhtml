@@ -49,10 +49,10 @@
             </h:form>
             <h:form rendered="#{personCtrl.logedIn}">   
                 <p>If you have already voted voting again will change your vote</p>
-                <h:inputText value="#{voteCtrl.vote.voteValue}"/>
-                <f:ajax>
-                    <h:commandButton value="button" action="#{voteCtrl.userVote()}"/>
-                </f:ajax>
+                <h:inputText value="#{proposalCtrl.vote.voteValue}"/>
+                <h:commandButton value="button">
+                    <f:ajax event="click" execute="@this" render="#form" listener="#{proposalCtrl.userVote}"/>
+                </h:commandButton>
             </h:form>
         </div>
     </h:body>

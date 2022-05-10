@@ -51,18 +51,22 @@ public class PersonService {
 
     public Person logIn(String email, String password) throws BusinessException {  //Very inefficent and cases fatal eroror if user is not found
         List<Person> allPerson = pf.findAll();
-        for (int i = 0; i < allPerson.size(); i++) {
-            if (allPerson.get(i).getEmail().equals(email)) {
-                if (allPerson.get(i).getPassword().equals(password)) {
-                    return allPerson.get(i);
+        try {
+            for (int i = 0; i < allPerson.size(); i++) {
+                if (allPerson.get(i).getEmail().equals(email)) {
+                    if (allPerson.get(i).getPassword().equals(password)) {
+                        return allPerson.get(i);
+                    } else {
+                        //throw new BusinessException("Incorrect username or password");
+                    }
                 } else {
                     //throw new BusinessException("Incorrect username or password");
                 }
-            } else {
-                //throw new BusinessException("Incorrect username or password");
             }
+        } catch(Exception e) {
+            throw new BusinessException("Incorrect username or password");
         }
-        throw new BusinessException("Incorrect username or password");
+        return null;
     }
 
     public Person getUserByEmail(String email) {

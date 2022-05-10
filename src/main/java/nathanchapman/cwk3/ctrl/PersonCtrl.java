@@ -48,6 +48,8 @@ public class PersonCtrl implements Serializable {
 
     public String doCreatePerson() { // add error handling
         ps.createNewPerson(p);
+        setP(null);
+        setP(new Person());
         return "signin.xhtml";
     }
 

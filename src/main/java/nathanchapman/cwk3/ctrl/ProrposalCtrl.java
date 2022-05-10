@@ -4,15 +4,14 @@ import java.awt.event.ActionEvent;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import nathanchapman.cwk3.bus.ProposalService;
 import nathanchapman.cwk3.bus.VoteService;
 import nathanchapman.cwk3.ent.Proposal;
+import nathanchapman.cwk3.ent.Vote;
 
 @Named(value = "proposalCtrl")
 @RequestScoped
@@ -27,6 +26,7 @@ public class ProrposalCtrl implements Serializable { //rename
 
     //private Vote vote = new Vote();
     private Proposal prop = new Proposal(); //Proposal to get uiser input
+    private Vote vote = new Vote();
     private List<Proposal> allProp = new ArrayList<>();
     private Long propId;
 
@@ -48,31 +48,27 @@ public class ProrposalCtrl implements Serializable { //rename
     }
 
     public String viewProp() {
-        displayProposalById(propId);
+        setProp(props.getPropById(propId));
         return "viewproposal.xhtml";
     }
-    
+
     String action;
-    
-    public void idListener(ActionEvent event) {
-        action = "";
-    }
 
-    public String displayProposalById(Long id) {
-        //Map<String, String> res = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-        //setProp(props.getPropById(Long.valueOf(res.get("id"))));
-        setProp(props.getPropById(id));
-        //setProp(props.getPropById(Long.valueOfa)));
-        
-        return "";
-    }
-
-//    public String userVote() {
-//            votes.createVote(vote, personCtrl.getP(), prop);
-//            setVote(null);
-//            setVote(new Vote());
-//            return "";
+//    public void idListener(ActionEvent event) {
+//        action = "";
 //    }
+
+//    public String displayProposalById(Long id) {
+//        return "";
+//    }
+
+    public void userVote() {
+        setProp(props.getPropById(151L));
+        votes.createVote(vote, personCtrl.getP(), prop);
+        setVote(null);
+        setVote(new Vote());
+    }
+
     public ProrposalCtrl() {
     }
 
@@ -84,13 +80,6 @@ public class ProrposalCtrl implements Serializable { //rename
         this.propId = propId;
     }
 
-//    public Vote getVote() {
-//        return vote;
-//    }
-//
-//    public void setVote(Vote vote) {
-//        this.vote = vote;
-//    }
     public List<Proposal> getAllProp() {
         if (allProp.isEmpty()) {
             allProp = props.getAllProposals();
@@ -113,4 +102,13 @@ public class ProrposalCtrl implements Serializable { //rename
     public void setProp(Proposal prop) {
         this.prop = prop;
     }
+
+    public Vote getVote() {
+        return vote;
+    }
+
+    public void setVote(Vote vote) {
+        this.vote = vote;
+    }
+
 }

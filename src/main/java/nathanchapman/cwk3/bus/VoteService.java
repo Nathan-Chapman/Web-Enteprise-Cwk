@@ -31,7 +31,8 @@ public class VoteService {
     }
     
     public Vote createVote(Vote vote, Person person, Proposal prop) {
-        vote.setProposal(proposalF.getProposalById(151L));
+        //vote.setProposal(proposalF.getProposalById(151L));
+        vote.setProposal(prop);
         vote.setPerson(person);
         vf.create(vote);
         return vote;
