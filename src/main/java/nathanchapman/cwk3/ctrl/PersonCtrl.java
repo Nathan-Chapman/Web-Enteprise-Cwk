@@ -24,12 +24,8 @@ public class PersonCtrl implements Serializable {
     private boolean logedIn = false;
     private String loggedInResult;
     List<Proposal> allProp = new ArrayList<>();
-
-    private Vote vote = new Vote();
     private long propId;
 
-    private List<Vote> allVotes = new ArrayList<>();
-    private List<Vote> votes = new ArrayList<>();
     private long pId;
     private boolean propOwner = false;
 
@@ -142,32 +138,12 @@ public class PersonCtrl implements Serializable {
         this.logedIn = logedIn;
     }
 
-    public List<Vote> getVotes() {
-        if (votes.isEmpty()) {
-            votes = vs.getVotesByProposalId(pId);
-        }
-        votes = vs.getVotesByProposalId(pId);
-        return votes;
-    }
-
-    public void setVotes(List<Vote> votes) {
-        this.votes = votes;
-    }
-
     public long getqId() {
         return pId;
     }
 
     public void setqId(long pId) {
         this.pId = pId;
-    }
-
-    public Vote getVote() {
-        return vote;
-    }
-
-    public void setVote(Vote vote) {
-        this.vote = vote;
     }
 
     public long getPropId() {
@@ -177,18 +153,7 @@ public class PersonCtrl implements Serializable {
     public void setPropId(long propId) {
         this.propId = propId;
     }
-
-    public List getAllVotes() {
-        if (allVotes.isEmpty()) {
-            allVotes = vs.getAllVotes();
-        }
-        return allVotes;
-    }
-
-    public void setAllVotes(List<Vote> allVotes) {
-        this.allVotes = allVotes;
-    }
-
+    
     public Person getP() {
         return p;
     }
