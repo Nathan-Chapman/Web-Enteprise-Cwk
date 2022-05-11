@@ -39,13 +39,11 @@ public class ProposalService implements Serializable {
     }
     
     public Proposal getPropById(long id) {
-        List<Proposal> allProposal = propf.findAll();
-        for (int i=0 ; i < allProposal.size() ; i++) {
-            if (allProposal.get(i).getId() == id) {            
-               return allProposal.get(i);
-            }     
+        try {
+            return propf.getProposalById(id);
+        } catch(Exception e) {
+            return null;
         }
-        return null;
     }
     
     public List<Proposal> getAllProposals() {
