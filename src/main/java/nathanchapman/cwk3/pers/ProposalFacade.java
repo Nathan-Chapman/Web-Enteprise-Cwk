@@ -6,7 +6,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import nathanchapman.cwk3.ent.Proposal;
-import nathanchapman.cwk3.ent.Vote;
 
 @Stateless
 public class ProposalFacade extends AbstractFacade<Proposal> {

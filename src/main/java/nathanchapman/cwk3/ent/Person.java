@@ -20,7 +20,7 @@ public class Person implements Serializable {
     private String lastName;
     private String email;
     private String password;
-    private boolean adminStatus;
+    private boolean adminStatus = false;
     private String nationalFederation;
     private String userRole;
 
