@@ -14,7 +14,7 @@
                     <h2> search</h2>
                     <h2>Search box</h2>
                 </div>
-            <h:link value="Create proposal" outcome="createproposal.xhtml"/>
+                <h:link value="Create proposal" outcome="createproposal.xhtml"/>
             </h:form>
             <h:form class ="headerRight">
                 <h:link value="#{personCtrl.updateSignInLink}" outcome="signin.xhtml"/>
@@ -33,6 +33,9 @@
             <h:form>
                 <h:outputText value="#{personCtrl.loggedInResult}"/>
                 <h:link value="#{personCtrl.home}" outcome="home.xhtml"/>
+            </h:form>
+            <h:form>
+                <h:commandButton value="Create account" action="signup.xhtml"/>
             </h:form>
         </div>
     </h:body>

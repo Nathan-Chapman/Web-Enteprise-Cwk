@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>View Proposal</title>
         <h:outputStylesheet  library ="css" name="main.css" />
@@ -49,12 +50,12 @@
             </h:form>
             <h:form rendered="#{personCtrl.logedIn}">   
                 <p>If you have already voted voting again will change your vote</p>
-                <h:inputText value="#{proposalCtrl.testString}"/>
-                <h:commandButton value="button" >
-                    <f:ajax event="click" execute="@this" render="#form" listener="#{proposalCtrl.userVote}"/>
-                </h:commandButton>
+                <p>1 = For, 2 = Against 3 = Abstain</p>
+                <h:inputText value="#{proposalCtrl.vote.voteValue}"/>
+                <p:commandButton value="Vote" action="#{proposalCtrl.userVote}">
+                    <f:ajax render="#proposalDisplayArea"/>
+                </p:commandButton>
             </h:form>
-            <h:outputText value="#{proposalCtrl.vote.voteValue}"/>
         </div>
     </h:body>
 </html>
