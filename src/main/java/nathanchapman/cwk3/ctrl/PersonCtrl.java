@@ -73,8 +73,9 @@ public class PersonCtrl implements Serializable {
         setLogedIn(false);
         setP(null);
         setP(new Person());
-        updateHeaderLogOut();
-        setHasVotedText("Please log into vote");
+        updateHeaderLogOut(); 
+        setLoggedInResult("");
+        setHome("");
     }
 
     public String updateHeaderLogIn() {
@@ -86,6 +87,7 @@ public class PersonCtrl implements Serializable {
     public String updateHeaderLogOut() {
         setUpdateSignInLink("SignIn");
         setUpdateUserPage("");
+        setHasVotedText("Please log into vote");
         return "";
     }
 
@@ -153,7 +155,7 @@ public class PersonCtrl implements Serializable {
     public void setPropId(long propId) {
         this.propId = propId;
     }
-    
+
     public Person getP() {
         return p;
     }
